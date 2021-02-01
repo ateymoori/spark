@@ -7,6 +7,7 @@ import com.spark.data.utils.onError
 import com.spark.data.utils.onSuccess
 import com.spark.domain.models.SingleValueEntity
 import com.spark.domain.models.TestEntity
+import com.spark.domain.repositories.EthnicityRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -18,7 +19,7 @@ import javax.inject.Inject
 
 @Suppress("DeferredResultUnused")
 class GetEnthnicCities @Inject constructor(
-    private val enthnicityRepo: EnthnicityRepositoryImpl
+    private val enthnicityRepo: EthnicityRepository
 ) : UseCase<Flow<Resource<List<SingleValueEntity>>>>() {
 
 

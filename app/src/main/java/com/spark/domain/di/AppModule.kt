@@ -4,8 +4,10 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.spark.BuildConfig
 import com.spark.data.api.RestApi
+import com.spark.data.repositories.EnthnicityRepositoryImpl
 import com.spark.data.repositories.ReligionsRepositoryImpl
 import com.spark.data.utils.EndPoints
+import com.spark.domain.repositories.EthnicityRepository
 import com.spark.domain.repositories.ReligionsRepository
 import dagger.Module
 import dagger.Provides
@@ -29,6 +31,12 @@ object AppModule {
     @Singleton
     fun provideReligionRepository(restApi:RestApi ): ReligionsRepository {
         return ReligionsRepositoryImpl(restApi)
+    }
+
+    @Provides
+    @Singleton
+    fun provideEthnicRepository(restApi:RestApi ): EthnicityRepository {
+        return EnthnicityRepositoryImpl(restApi)
     }
 
 }

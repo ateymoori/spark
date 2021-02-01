@@ -8,6 +8,8 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
+import java.io.File
 import kotlin.math.abs
 import kotlin.math.log10
 import kotlin.math.round
@@ -71,5 +73,13 @@ fun ImageView.setImageDrawable(context: Context?, drawable: Int) {
     if (context != null)
         this.setImageDrawable(ContextCompat.getDrawable(context, drawable))
 
+}
+
+
+fun ImageView.loadFile( file: File) {
+    Glide.with(this.context)
+        .load(file)
+        .centerCrop()
+        .into(this)
 }
 

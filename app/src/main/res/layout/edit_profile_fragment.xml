@@ -49,13 +49,12 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/avatarContainer"
                 android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:visibility="gone">
+                android:layout_height="100dp">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="36dp"
+                    app:cardCornerRadius="42dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -70,8 +69,8 @@
 
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/avatar"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="84dp"
+                        android:layout_height="84dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/background"
                         app:riv_border_color="@color/gray"

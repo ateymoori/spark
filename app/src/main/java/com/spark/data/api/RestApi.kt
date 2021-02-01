@@ -21,4 +21,9 @@ interface RestApi {
     suspend fun getReligions(): Response<List<EthnicityData>>
 
 
+
+    @GET("martial")
+    suspend fun getMartials(): Response<List<EthnicityData>>
+
+
 }
