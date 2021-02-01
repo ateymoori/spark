@@ -1,0 +1,84 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootEdit"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <TextView
+        android:id="@+id/placeHolder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding4px"
+        android:textColor="@color/textPrimaryDark"
+        android:textSize="@dimen/hintFontSize"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editTextContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/editTextContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding4px"
+        android:background="@drawable/selector_rectangle_transparent"
+        app:layout_constraintBottom_toTopOf="@+id/errorTv"
+        app:layout_constraintTop_toBottomOf="@+id/placeHolder">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/padding18px"
+            android:layout_marginEnd="@dimen/padding18px"
+            android:background="@color/transparent"
+            android:paddingTop="@dimen/padding20px"
+            android:paddingBottom="@dimen/padding20px"
+            android:textColor="@color/textPrimaryDark"
+            android:textColorHint="@color/textHint"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewEnd"
+            app:layout_constraintStart_toEndOf="@+id/imageViewStart"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="@+id/editText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editText" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="@+id/editText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/errorTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:textColor="@color/error"
+        android:textSize="@dimen/smallFontSize"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editTextContainer"
+        app:layout_constraintStart_toStartOf="@+id/editTextContainer"
+        app:layout_constraintTop_toBottomOf="@+id/editTextContainer" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

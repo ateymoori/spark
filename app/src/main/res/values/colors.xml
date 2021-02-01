@@ -1,10 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!--material colors-->
+    <color name="colorPrimary">#2C7873</color>
+    <color name="colorPrimaryDark">#2C7873</color>
+    <color name="colorAccent">#F9B34C</color>
+    <color name="statusBarColor">#FAFAFA</color>
+    <color name="windowsBackground">#FFF</color>
+    <color name="windowsBackgroundDark">#2C7873</color>
+    <color name="navigationBarColor">#FFF</color>
+    <!--===========================================================================-->
+    <!--base colors-->
+    <color name="transparent">@android:color/transparent</color>
+    <color name="white">#FFF</color>
+    <color name="snow">#FAFAFA</color>
+    <color name="lightGray">#E8E8E8</color>
+    <color name="gray">#CFCFCF</color>
+    <color name="alicBlue">#f0f6ff</color>
+    <color name="purBlack">#000</color>
+    <color name="darkGray">#58595b</color>
+    <color name="black">#444</color>
+    <color name="yellow">#F9B759</color>
+    <color name="gold">#ec9626</color>
+    <color name="orange">#FF5722</color>
+    <color name="red">#D22E2E</color>
+    <color name="green">#71ECB5</color>
+    <color name="blue">#4FACFE</color>
+    <color name="darkBlue">#404b69</color>
+    <!--===========================================================================-->
+    <!--view colors-->
+    <color name="textPrimary">#FFF</color>
+    <color name="textSecondary">#D3D3D5</color>
+    <color name="textPrimaryDark">#000</color>
+    <color name="textSecondaryDark">#9E9E9E</color>
+    <color name="textHint">#9E9E9E</color>
+    <color name="textSubtitle">#FC5C5A5A</color>
+    <color name="dividerColor">#E9E9E9</color>
+    <color name="dividerColorDark">#393948</color>
+    <color name="cardBackground">#FFF</color>
+    <!--===========================================================================-->
+    <!-- addState -->
+    <color name="disable">#9C9C9C</color>
+    <color name="error">#E06E6E</color>
+    <!--===========================================================================-->
+    <!--other colors-->
+    <color name="whiteOpacity">#7fffffff</color>
+    <color name="circleOpacity">#1AFFFFFF</color>
+    <color name="blackOpacity">#33000000</color>
+    <color name="primaryOpacity">#BF2C7873</color>
+    <color name="redOpacity">#87E21B1B</color>
+    <color name="grayOpacity">#63888888</color>
+    <!--===========================================================================-->
+    <!-- editText colors -->
+    <color name="defaultBg">#F7F9FC</color>
+    <color name="defaultBorder">#E9E9E9</color>
+    <color name="selectedBg">#FFFFFF</color>
+    <color name="selectedBorder">#707070</color>
+    <color name="disableBg">#f7f9fc</color>
+    <color name="disableBorder">#7AE4E9F2</color>
+    <color name="successBg">#f7f9fc</color>
+    <color name="successBorder">#00E58F</color>
+    <color name="errorBg">#f7f9fc</color>
+    <color name="errorBorder">#FF116E</color>
+
+    <color name="hintColor">#C9C9C9</color>
+    <color name="textColor">#222B45</color>
+    <color name="disableColor">#7C8F9BB3</color>
+    <!--===========================================================================-->
+    <color name="normalOpacity">#4DFFFFFF</color>
 </resources>

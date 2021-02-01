@@ -1,0 +1,7 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid
+        android:color="@color/windowsBackground"
+        android:type="linear" />
+    <corners android:radius="@dimen/cardCornerRadius" />
+</shape>

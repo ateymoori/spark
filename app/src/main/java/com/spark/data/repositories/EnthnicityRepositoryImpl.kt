@@ -2,20 +2,22 @@ package com.spark.data.repositories
 
 import com.spark.data.api.RestApi
 import com.spark.data.models.mapToEntity
+import com.spark.data.models.mapToSingleValue
 import com.spark.data.utils.*
 import com.spark.domain.models.SingleValueEntity
 import com.spark.domain.models.TestEntity
 import com.spark.domain.repositories.AppSettingsRepository
+import com.spark.domain.repositories.EthnicityRepository
 import javax.inject.Inject
 
-class AppSettingRepositoryImpl @Inject constructor(
+class EnthnicityRepositoryImpl @Inject constructor(
     private val restApi: RestApi
-) : AppSettingsRepository, BaseDataSource() {
-    val enthnicityList = listOf("","")
-    override suspend fun getAppSettings(): Resource<TestEntity> {
+) : EthnicityRepository, BaseDataSource() {
 
-        getResult { restApi.getSetting() }.onSuccess {
-            return Resource.Success(it.mapToEntity())
+
+    override suspend fun getEthnicities(): Resource<List<SingleValueEntity>> {
+        getResult { restApi.getEthnicity() }.onSuccess {
+            return Resource.Success(it?.map {it.mapToSingleValue()  } )
         }.onError {
             return Resource.Failure.Generic(it)
         }

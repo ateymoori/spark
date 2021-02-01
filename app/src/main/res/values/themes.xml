@@ -1,16 +1,78 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.SparkNetwork" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+<!--    <style name="Theme.SparkNetwork" parent="Theme.MaterialComponents.DayNight.DarkActionBar">-->
+<!--        &lt;!&ndash; Primary brand color. &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/purple_500</item>-->
+<!--        <item name="colorPrimaryVariant">@color/purple_700</item>-->
+<!--        <item name="colorOnPrimary">@color/white</item>-->
+<!--        &lt;!&ndash; Secondary brand color. &ndash;&gt;-->
+<!--        <item name="colorSecondary">@color/teal_200</item>-->
+<!--        <item name="colorSecondaryVariant">@color/teal_700</item>-->
+<!--        <item name="colorOnSecondary">@color/black</item>-->
+<!--        &lt;!&ndash; Status bar color. &ndash;&gt;-->
+<!--        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--    </style>-->
+
+
+
+    <!--Light-->
+    <style name="Theme.SparkNetwork" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="bottomSheetDialogTheme">@style/BottomSheet</item>
+        <item name="fontFamily">@font/custom_font</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/black</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">
+            @color/navigationBarColor
+        </item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="28">true</item>
+    </style>
+    <!--===========================================================================-->
+    <!-- BottomSheet-->
+    <style name="BottomSheet" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetBackground</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="BottomSheetBackground" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/shape_top_24dp</item>
+        <item name="behavior_peekHeight">500dp</item>
+    </style>
+    <!--===========================================================================-->
+
+    <!--===========================================================================-->
+    <!-- DatePicker-->
+    <style name="DimePickerTheme" parent="Theme.MaterialComponents.Dialog">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/textPrimaryDark</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="dialogCornerRadius">@dimen/cardCornerRadius</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    <!--===========================================================================-->
+
+    <style name="ContainedButton" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/colorAccent</item>
+        <item name="android:textColor">@color/textPrimaryDark</item>
+        <item name="iconTint">@color/white</item>
+        <item name="rippleColor">@color/button_contained_gradient_color</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/bodyFontSize</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:paddingTop">@dimen/padding16px</item>
+        <item name="android:paddingBottom">@dimen/padding16px</item>
+        <item name="android:paddingStart">@dimen/padding28px</item>
+        <item name="android:paddingEnd">@dimen/padding28px</item>
+        <item name="cornerRadius">@dimen/padding32px</item>
     </style>
 </resources>

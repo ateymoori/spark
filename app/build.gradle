@@ -106,4 +106,10 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
+
+    api "com.makeramen:roundedimageview:2.3.0"
+
+//    implementation 'com.github.amspayam:AlertView-Android:1.2.0'
+
+
 }
