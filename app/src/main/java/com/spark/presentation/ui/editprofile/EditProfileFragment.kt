@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.edit_profile_fragment.*
 @AndroidEntryPoint
 class EditProfileFragment : BaseFragment() {
 
-    private lateinit var adapterEthnicithy: SingleValueAdapter
     private lateinit var adapterGenders: SingleValueAdapter
     private lateinit var adapterReligions: SingleValueAdapter
     private val viewModel: EditProfileViewModel by viewModels()

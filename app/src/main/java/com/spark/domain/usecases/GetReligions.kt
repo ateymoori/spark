@@ -8,16 +8,19 @@ import com.spark.data.utils.onError
 import com.spark.data.utils.onSuccess
 import com.spark.domain.models.SingleValueEntity
 import com.spark.domain.models.TestEntity
+import com.spark.domain.repositories.ReligionsRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.retry
 
 import javax.inject.Inject
 
 @Suppress("DeferredResultUnused")
 class GetReligions @Inject constructor(
-    private val religionRepo: ReligionsRepositoryImpl
+    private val religionRepo: ReligionsRepository
  ) : UseCase<Flow<Resource<List<SingleValueEntity>>>>() {
 
 
@@ -26,7 +29,10 @@ class GetReligions @Inject constructor(
             emit(
                 religionRepo.getReligions()
             )
-       }.flowOn(Dispatchers.IO)
+       }.retry(2) { e ->
+            (e is Exception).also { if (it) delay(1000) }
+
+        }.flowOn(Dispatchers.IO)
     }
 
 }

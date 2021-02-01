@@ -8,16 +8,18 @@ import com.spark.data.utils.onSuccess
 import com.spark.domain.models.SingleValueEntity
 import com.spark.domain.models.TestEntity
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.retry
 
 import javax.inject.Inject
 
 @Suppress("DeferredResultUnused")
 class GetEnthnicCities @Inject constructor(
     private val enthnicityRepo: EnthnicityRepositoryImpl
- ) : UseCase<Flow<Resource<List<SingleValueEntity>>>>() {
+) : UseCase<Flow<Resource<List<SingleValueEntity>>>>() {
 
 
     override fun getData(data: Map<String, Any>?): Flow<Resource<List<SingleValueEntity>>> {
@@ -25,7 +27,10 @@ class GetEnthnicCities @Inject constructor(
             emit(
                 enthnicityRepo.getEthnicities()
             )
-       }.flowOn(Dispatchers.IO)
+        }.retry(2) { e ->
+            (e is Exception).also { if (it) delay(1000) }
+
+        }.flowOn(Dispatchers.IO)
     }
 
 }
