@@ -3,5 +3,18 @@
     <string name="search">Search</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="display_name">Display Name</string>
+    <string name="real_name">Real Name</string>
+    <string name="birthday">Birthday</string>
+    <string name="gender">Gender</string>
+    <string name="ethnicity">Ethnicity</string>
+    <string name="religion">Religion</string>
+    <string name="height">Height</string>
+    <string name="figure">Figure</string>
+    <string name="marital_status">Marital Status</string>
+    <string name="occupation">Occupation</string>
+    <string name="about_me">About Me</string>
+    <string name="location">Location</string>
+    <string name="update_profile">Update Profile</string>
 
 </resources>

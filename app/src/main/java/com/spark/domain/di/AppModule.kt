@@ -1,26 +1,18 @@
 package com.spark.domain.di
 
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.spark.BuildConfig
 import com.spark.data.api.RestApi
 import com.spark.data.repositories.EnthnicityRepositoryImpl
+import com.spark.data.repositories.MaritalListRepositoryImpl
+import com.spark.data.repositories.ProfileRepositoryImpl
 import com.spark.data.repositories.ReligionsRepositoryImpl
-import com.spark.data.utils.EndPoints
 import com.spark.domain.repositories.EthnicityRepository
+import com.spark.domain.repositories.MaritalListRepository
+import com.spark.domain.repositories.ProfileRepository
 import com.spark.domain.repositories.ReligionsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
-import okhttp3.OkHttpClient
-import okhttp3.Protocol
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
-import java.util.*
-import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -29,14 +21,26 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideReligionRepository(restApi:RestApi ): ReligionsRepository {
+    fun provideReligionRepository(restApi: RestApi): ReligionsRepository {
         return ReligionsRepositoryImpl(restApi)
     }
 
     @Provides
     @Singleton
-    fun provideEthnicRepository(restApi:RestApi ): EthnicityRepository {
+    fun provideEthnicRepository(restApi: RestApi): EthnicityRepository {
         return EnthnicityRepositoryImpl(restApi)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMaritalRepository(restApi: RestApi): MaritalListRepository {
+        return MaritalListRepositoryImpl(restApi)
+    }
+
+    @Provides
+    @Singleton
+    fun provideProfileRepository(restApi: RestApi): ProfileRepository {
+        return ProfileRepositoryImpl(restApi)
     }
 
 }

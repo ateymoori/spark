@@ -58,6 +58,8 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:backgroundDimEnabled">false</item>
+
+        <item name="android:textColorPrimary">@color/textSecondaryDark</item>
     </style>
     <!--===========================================================================-->
 

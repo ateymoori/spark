@@ -16,42 +16,33 @@
 
 
 
-    <!--Light-->
-    <style name="Theme.SparkNetwork" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="bottomSheetDialogTheme">@style/BottomSheet</item>
-        <item name="android:windowSoftInputMode">adjustPan</item>
-        <item name="fontFamily">@font/custom_font</item>
-        <item name="android:windowDisablePreview">true</item>
-    </style>
-    <!--===========================================================================-->
-    <!-- BottomSheet-->
-    <style name="BottomSheet" parent="Theme.Design.Light.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/BottomSheetBackground</item>
-        <item name="android:windowIsFloating">false</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowSoftInputMode">adjustResize</item>
-    </style>
+<!--    &lt;!&ndash;Light&ndash;&gt;-->
+<!--    <style name="Theme.SparkNetwork" parent="Theme.MaterialComponents.Light.NoActionBar">-->
+<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+<!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+<!--        <item name="colorAccent">@color/colorAccent</item>-->
+<!--        <item name="bottomSheetDialogTheme">@style/BottomSheet</item>-->
+<!--        <item name="android:windowSoftInputMode">adjustPan</item>-->
+<!--        <item name="fontFamily">@font/custom_font</item>-->
+<!--        <item name="android:windowDisablePreview">true</item>-->
+<!--    </style>-->
+<!--    &lt;!&ndash;===========================================================================&ndash;&gt;-->
+<!--    &lt;!&ndash; BottomSheet&ndash;&gt;-->
+<!--    <style name="BottomSheet" parent="Theme.Design.Light.BottomSheetDialog">-->
+<!--        <item name="bottomSheetStyle">@style/BottomSheetBackground</item>-->
+<!--        <item name="android:windowIsFloating">false</item>-->
+<!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
+<!--        <item name="android:windowSoftInputMode">adjustResize</item>-->
+<!--    </style>-->
 
-    <style name="BottomSheetBackground" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/shape_top_24dp</item>
-        <item name="behavior_peekHeight">500dp</item>
-    </style>
+<!--    <style name="BottomSheetBackground" parent="Widget.Design.BottomSheet.Modal">-->
+<!--        <item name="android:background">@drawable/shape_top_24dp</item>-->
+<!--        <item name="behavior_peekHeight">500dp</item>-->
+<!--    </style>-->
     <!--===========================================================================-->
 
     <!--===========================================================================-->
     <!-- DatePicker-->
-    <style name="DimePickerTheme" parent="Theme.MaterialComponents.Dialog">
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColor">@color/textPrimaryDark</item>
-        <item name="colorControlActivated">@color/colorAccent</item>
-        <item name="dialogCornerRadius">@dimen/cardCornerRadius</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:backgroundDimEnabled">false</item>
-    </style>
+
     <!--===========================================================================-->
 </resources>

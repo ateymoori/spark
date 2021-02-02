@@ -83,3 +83,10 @@ fun ImageView.loadFile( file: File) {
         .into(this)
 }
 
+fun ImageView.loadUrl( url: String?) {
+    Glide.with(this.context)
+        .load(url)
+        .centerCrop()
+        .into(this)
+}
+

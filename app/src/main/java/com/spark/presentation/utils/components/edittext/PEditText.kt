@@ -131,7 +131,7 @@ class PEditText @JvmOverloads constructor(
             textStyle = typedArray.getInt(R.styleable.PEditText_android_textStyle, textStyle)
             textColor =
                 typedArray.getInt(R.styleable.PEditText_android_textColor, R.color.textPrimaryDark)
-//            textColorHint =
+            textColorHint = R.color.black
 //                typedArray.getInt(R.styleable.PEditText_android_textColorHint, textColorHint)
             labelBackgroundColor =
                 typedArray.getInt(R.styleable.PEditText_backgroundColor, labelBackgroundColor)
@@ -330,9 +330,6 @@ class PEditText @JvmOverloads constructor(
         return this.visibility == View.VISIBLE
     }
 
-    // </editor-fold>
-
-    // <editor-fold defaultState="collapsed" desc="Setters">
 
     override fun clearFocus() {
         super.clearFocus()
@@ -398,9 +395,6 @@ class PEditText @JvmOverloads constructor(
         this.kind = kind
         initKind()
     }
-    // </editor-fold>
-
-    // <editor-fold defaultState="collapsed" desc="Behaviors">
     private fun setBackgroundEdt(type: Type) {
 
         if (bg != 0 && type != Type.ERROR) {
@@ -471,7 +465,21 @@ class PEditText @JvmOverloads constructor(
                 it?.setAdapter(adapter)
             }
         }
+
+        imageViewEnd.setOnClickListener {
+            bottomSheetList = PBottomSheetList.newInstance(getText())
+            bottomSheetList.let {
+                it?.show((context as AppCompatActivity).supportFragmentManager, "cardListBTM")
+            }
+            bottomSheetList.let {
+                it?.setAdapter(adapter)
+            }
+        }
+
+
     }
+
+
 
     fun dismiss() {
         bottomSheetList.let {
@@ -479,6 +487,5 @@ class PEditText @JvmOverloads constructor(
         }
     }
 
-    // </editor-fold>
 
 }

@@ -45,9 +45,10 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageViewStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/padding32px"
+            android:layout_height="@dimen/padding32px"
             android:padding="4dp"
+            app:tint="@color/colorPrimary"
             android:scaleType="centerInside"
             app:layout_constraintBottom_toBottomOf="@+id/editText"
             app:layout_constraintStart_toStartOf="parent"

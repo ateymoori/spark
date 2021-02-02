@@ -6,11 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.bumptech.glide.Glide
 import com.spark.R
 import com.spark.data.utils.*
+import com.spark.domain.models.ProfileEntity
 import com.spark.domain.models.SingleValueEntity
 import com.spark.presentation.utils.components.base.BaseFragment
 import com.spark.presentation.utils.components.base.SingleValueAdapter
@@ -24,6 +23,8 @@ class EditProfileFragment : BaseFragment() {
 
     private lateinit var adapterGenders: SingleValueAdapter
     private lateinit var adapterReligions: SingleValueAdapter
+    private lateinit var adapterMarital: SingleValueAdapter
+
     private val viewModel: EditProfileViewModel by viewModels()
     private val GALLERY_CODE = 1000
 
@@ -38,9 +39,10 @@ class EditProfileFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        initLiveDataListeners()
         initAdapters()
 
-        gender.setSpinnerAdapter(adapterGenders)
+        genderSpinner.setSpinnerAdapter(adapterGenders)
 
 
 
@@ -55,11 +57,11 @@ class EditProfileFragment : BaseFragment() {
                                 model: SingleValueEntity?,
                                 viewId: View?
                             ) {
-                                ethnicithy.setText(model?.title)
-                                ethnicithy.dismiss()
+                                ethnicitySpinner.setText(model?.title)
+                                ethnicitySpinner.dismiss()
                             }
                         })
-                ethnicithy.setSpinnerAdapter(adapterReligions)
+                ethnicitySpinner.setSpinnerAdapter(adapterReligions)
             }.onError {
                 showError(it)
             }.onNetworkError {
@@ -79,11 +81,36 @@ class EditProfileFragment : BaseFragment() {
                                 model: SingleValueEntity?,
                                 viewId: View?
                             ) {
-                                religion.setText(model?.title)
-                                religion.dismiss()
+                                religionSpinner.setText(model?.title)
+                                religionSpinner.dismiss()
                             }
                         })
-                religion.setSpinnerAdapter(adapterReligions)
+                religionSpinner.setSpinnerAdapter(adapterReligions)
+
+            }.onError {
+                showError(it)
+            }.onNetworkError {
+                showError(it)
+            }
+
+        })
+
+        viewModel.maritalList.observe(viewLifecycleOwner, {
+            it.onSuccess { data ->
+                adapterMarital =
+                    SingleValueAdapter(
+                        data?.toMutableList(),
+                        object : IBaseItemListener<SingleValueEntity> {
+                            override fun onClick(
+                                position: Int?,
+                                model: SingleValueEntity?,
+                                viewId: View?
+                            ) {
+                                maritalSpinner.setText(model?.title)
+                                maritalSpinner.dismiss()
+                            }
+                        })
+                maritalSpinner.setSpinnerAdapter(adapterMarital)
 
             }.onError {
                 showError(it)
@@ -112,7 +139,7 @@ class EditProfileFragment : BaseFragment() {
             val uri = data?.data
             if (uri != null && activity != null) {
                 val file = File(FilePickUtils.getPath(requireActivity(), uri))
-                 avatar.loadFile(file)
+                avatar.loadFile(file)
                 //compressAndUpload(file)
             }
         }
@@ -134,10 +161,38 @@ class EditProfileFragment : BaseFragment() {
                     SingleValueEntity("Male")
                 ), object : IBaseItemListener<SingleValueEntity> {
                     override fun onClick(position: Int?, model: SingleValueEntity?, viewId: View?) {
-                        gender.setText(model?.title)
-                        gender.dismiss()
+                        genderSpinner.setText(model?.title)
+                        genderSpinner.dismiss()
                     }
                 })
+
+
+    }
+
+    private fun initLiveDataListeners() {
+        viewModel.profile.observe(viewLifecycleOwner, {
+            it.onSuccess { showProfile(it) }
+            it.onError { showError(it) }
+        })
+    }
+
+    private fun showProfile(profile: ProfileEntity?) {
+        profile?.apply {
+            avatar.loadUrl(picture)
+
+            displayNameEdt.setText(displayName)
+            realNameEdt.setText(realName)
+            birthdayEdt.setText(birthday)
+            genderSpinner.setText(gender)
+            ethnicitySpinner.setText(ethnicity)
+            religionSpinner.setText(religion)
+            heightEdt.setText(height.toString())
+            figureSpinner.setText(figure)
+            maritalSpinner.setText(maritalStatus)
+            occupationEdt.setText(occupation)
+            aboutMeEdt.setText(aboutMe)
+            locationEdt.setText(locationTitle)
+        }
 
 
     }
