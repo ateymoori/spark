@@ -15,15 +15,14 @@ import javax.inject.Inject
 @Suppress("DeferredResultUnused")
 class GetProfile @Inject constructor(
     private val profileRepo: ProfileRepository
- ) : UseCase<Flow<Resource<ProfileEntity>>>() {
+) : UseCase<Flow<Resource<ProfileEntity>>, Nothing>() {
 
-
-    override fun getData(data: Map<String, Any>?): Flow<Resource<ProfileEntity>> {
+    override fun getData(data: Nothing?): Flow<Resource<ProfileEntity>> {
         return flow {
             emit(
                 profileRepo.getProfile()
             )
-       }.retry(2) { e ->
+        }.retry(2) { e ->
             (e is Exception).also { if (it) delay(1000) }
 
         }.flowOn(Dispatchers.IO)

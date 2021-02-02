@@ -3,6 +3,7 @@ package com.spark.data.models
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.spark.domain.models.ProfileEntity
+import java.io.File
 
 open class ProfileData @JvmOverloads constructor(
     @Expose
@@ -37,7 +38,8 @@ open class ProfileData @JvmOverloads constructor(
     @SerializedName("longitude") val longitude: Float? = null,
     @Expose
     @SerializedName("updated_at")
-    val updatedAt: String? = null
+    val updatedAt: String? = null,
+    val pictureUpload: File? = null
 )
 
 fun ProfileData?.mapToEntity(): ProfileEntity =

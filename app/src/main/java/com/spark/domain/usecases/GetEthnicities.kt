@@ -20,10 +20,10 @@ import javax.inject.Inject
 @Suppress("DeferredResultUnused")
 class GetEthnicities @Inject constructor(
     private val ethnicityRepo: EthnicityRepository
-) : UseCase<Flow<Resource<List<SingleValueEntity>>>>() {
+) : UseCase<Flow<Resource<List<SingleValueEntity>>> , Nothing >() {
 
 
-    override fun getData(data: Map<String, Any>?): Flow<Resource<List<SingleValueEntity>>> {
+    override fun getData(data: Nothing?): Flow<Resource<List<SingleValueEntity>>> {
         return flow {
             emit(
                 ethnicityRepo.getEthnicities()

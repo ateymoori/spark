@@ -1,5 +1,8 @@
 package com.spark.domain.models
 
+import com.spark.data.models.ProfileData
+import java.io.File
+
 
 data class ProfileEntity(
     val displayName: String? = null,
@@ -17,5 +20,27 @@ data class ProfileEntity(
     val locationTitle: String? = null,
     val latitude: Float? = null,
     val longitude: Float? = null,
-    val updatedAt: String? = null
+    val updatedAt: String? = null,
+    val pictureUpload: File? = null,
 )
+
+
+fun ProfileEntity?.mapToData(): ProfileData =
+    ProfileData(
+        displayName = this?.displayName,
+        realName = this?.realName,
+        pictureUpload = this?.pictureUpload,
+        birthday = this?.birthday,
+        gender = this?.gender,
+        ethnicity = this?.ethnicity,
+        religion = this?.religion,
+        figure = this?.figure,
+        height = this?.height,
+        maritalStatus = this?.maritalStatus,
+        occupation = this?.occupation,
+        aboutMe = this?.aboutMe,
+        locationTitle = this?.locationTitle,
+        latitude = this?.latitude,
+        longitude = this?.longitude
+    )
+

@@ -8,10 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.spark.data.utils.Resource
 import com.spark.domain.models.ProfileEntity
 import com.spark.domain.models.SingleValueEntity
-import com.spark.domain.usecases.GetEthnicities
-import com.spark.domain.usecases.GetMaritalList
-import com.spark.domain.usecases.GetProfile
-import com.spark.domain.usecases.GetReligions
+import com.spark.domain.usecases.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -19,13 +16,15 @@ class EditProfileViewModel @ViewModelInject constructor(
     private val getEthnicities: GetEthnicities,
     private val getReligions: GetReligions,
     private val getMaritalList: GetMaritalList,
-    private val getProfile: GetProfile
+    private val getProfile: GetProfile,
+    private val updateProfile: UpdateProfile
 ) : ViewModel(), LifecycleObserver {
 
     val ethnicities = MutableLiveData<Resource<List<SingleValueEntity>>>()
     val religions = MutableLiveData<Resource<List<SingleValueEntity>>>()
     val maritalList = MutableLiveData<Resource<List<SingleValueEntity>>>()
     val profile = MutableLiveData<Resource<ProfileEntity>>()
+    val saveProfile = MutableLiveData<Resource<ProfileEntity>>()
 
     init {
         getEnthnics()
@@ -61,6 +60,15 @@ class EditProfileViewModel @ViewModelInject constructor(
         viewModelScope.launch {
             getProfile.getData().collect {
                 profile.postValue(it)
+            }
+        }
+    }
+
+
+    fun saveProfile(profile: ProfileEntity?){
+        viewModelScope.launch {
+            updateProfile.getData(profile).collect {
+                saveProfile.postValue(it)
             }
         }
     }

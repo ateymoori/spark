@@ -4,7 +4,9 @@ import com.spark.data.models.EthnicityData
 import com.spark.data.models.ProfileData
 import com.spark.data.models.TestData
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 
 interface RestApi {
 
@@ -27,6 +29,9 @@ interface RestApi {
 
     @GET("profile")
     suspend fun getProfile(): Response<ProfileData>
+
+    @POST("profile")
+    suspend fun updateProfile(@Body profile: ProfileData): Response<ProfileData>
 
 
 }

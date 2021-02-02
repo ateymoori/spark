@@ -8,9 +8,7 @@ import com.spark.presentation.utils.ext.add
 import java.util.Calendar
 import java.util.Locale
 
-/**
- * Created by p.kokabi on 3/27/17.
- */
+
 
 class DateSeparator(private val editText: AppCompatEditText) : TextWatcher {
     private var current = ""

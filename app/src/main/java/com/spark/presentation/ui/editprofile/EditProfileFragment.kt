@@ -9,14 +9,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.spark.R
 import com.spark.data.utils.*
-import com.spark.domain.models.ProfileEntity
 import com.spark.domain.models.SingleValueEntity
 import com.spark.presentation.utils.components.base.BaseFragment
+import com.spark.presentation.utils.components.base.Either
 import com.spark.presentation.utils.components.base.SingleValueAdapter
 import com.spark.presentation.utils.components.bottomSheetList.base.IBaseItemListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.edit_profile_fragment.*
 import java.io.File
+import com.spark.domain.models.ProfileEntity as ProfileEntity
 
 @AndroidEntryPoint
 class EditProfileFragment : BaseFragment() {
@@ -44,6 +45,9 @@ class EditProfileFragment : BaseFragment() {
 
         genderSpinner.setSpinnerAdapter(adapterGenders)
 
+        updateProfileBtn.setOnClickListener {
+            updateProfile()
+        }
 
 
         viewModel.ethnicities.observe(viewLifecycleOwner, {
@@ -174,12 +178,17 @@ class EditProfileFragment : BaseFragment() {
             it.onSuccess { showProfile(it) }
             it.onError { showError(it) }
         })
+        viewModel.saveProfile.observe(viewLifecycleOwner, {
+            it.onSuccess { showMessage("profileSaved") }
+            it.onError { showError(it) }
+        })
+
+
     }
 
     private fun showProfile(profile: ProfileEntity?) {
         profile?.apply {
             avatar.loadUrl(picture)
-
             displayNameEdt.setText(displayName)
             realNameEdt.setText(realName)
             birthdayEdt.setText(birthday)
@@ -193,7 +202,31 @@ class EditProfileFragment : BaseFragment() {
             aboutMeEdt.setText(aboutMe)
             locationEdt.setText(locationTitle)
         }
+    }
 
+
+    private fun updateProfile() {
+        viewModel.saveProfile(
+            ProfileEntity(
+                displayName = displayNameEdt.getText(),
+                realName = realNameEdt.getText(),
+                birthday = birthdayEdt.getText(),
+                gender = genderSpinner.getText(),
+                ethnicity = ethnicitySpinner.getText(),
+                religion = religionSpinner.getText(),
+                figure = figureSpinner.getText(),
+                height = heightEdt.getText().toInt(),
+                maritalStatus = maritalSpinner.getText(),
+                occupation = occupationEdt.getText(),
+                aboutMe = aboutMeEdt.getText(),
+                locationTitle = locationEdt.getText(),
+                picture = null,
+                latitude = null,
+                longitude = null,
+                updatedAt = null,
+                pictureUpload = null
+            )
+        )
 
     }
 
