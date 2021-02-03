@@ -9,6 +9,7 @@ import com.spark.domain.repositories.ProfileRepository
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import javax.inject.Inject
 
@@ -38,7 +39,7 @@ class ProfileRepositoryImpl @Inject constructor(
 
     override suspend fun uploadAvatar(avatar: File): Resource<ProfileEntity> {
         val requestFile =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), avatar)
+            avatar.asRequestBody("multipart/form-data".toMediaTypeOrNull())
         multipartBody =
             MultipartBody.Part.createFormData("avatar", avatar.name, requestFile)
 
