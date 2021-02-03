@@ -180,11 +180,14 @@ class EditProfileFragment : BaseFragment() {
             it.onError { showError(it) }
         })
         viewModel.updateProfileState.observe(viewLifecycleOwner, {
-            it.onSuccess { showMessage("Profile Saved") }
+            it.onSuccess {
+                showMessage("Profile Saved")
+                Navigation.findNavController(updateProfileBtn).navigate(
+                    R.id.action_editProfileFragment_to_showProfileFragment
+                )
+            }
             it.onError { showError(it) }
-            Navigation.findNavController(updateProfileBtn).navigate(
-                R.id.action_editProfileFragment_to_showProfileFragment
-            )
+
         })
         viewModel.uploadAvatarState.observe(viewLifecycleOwner, {
             it.onSuccess { showMessage("Avatar Uploaded") }
@@ -204,7 +207,6 @@ class EditProfileFragment : BaseFragment() {
             ethnicitySpinner.setText(ethnicity)
             religionSpinner.setText(religion)
             heightEdt.setText(height.toString())
-            figureSpinner.setText(figure)
             maritalSpinner.setText(maritalStatus)
             occupationEdt.setText(occupation)
             aboutMeEdt.setText(aboutMe)
@@ -222,7 +224,6 @@ class EditProfileFragment : BaseFragment() {
                 gender = genderSpinner.getText(),
                 ethnicity = ethnicitySpinner.getText(),
                 religion = religionSpinner.getText(),
-                figure = figureSpinner.getText(),
                 height = heightEdt.getText().toInt(),
                 maritalStatus = maritalSpinner.getText(),
                 occupation = occupationEdt.getText(),

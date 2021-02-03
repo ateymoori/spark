@@ -23,8 +23,6 @@ open class ProfileData @JvmOverloads constructor(
     @Expose
     @SerializedName("height") val height: Int? = null,
     @Expose
-    @SerializedName("figure") val figure: String? = null,
-    @Expose
     @SerializedName("marital_status") val maritalStatus: String? = null,
     @Expose
     @SerializedName("occupation") val occupation: String? = null,
@@ -53,7 +51,6 @@ fun ProfileData?.mapToEntity(): ProfileEntity =
         gender = this?.gender,
         ethnicity = this?.ethnicity,
         religion = this?.religion,
-        figure = this?.figure,
         height = this?.height,
         maritalStatus = this?.maritalStatus,
         occupation = this?.occupation,

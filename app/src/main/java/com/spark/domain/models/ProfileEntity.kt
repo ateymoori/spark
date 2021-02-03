@@ -5,22 +5,21 @@ import java.io.File
 
 
 data class ProfileEntity(
-    val displayName: String? = null,
-    val realName: String? = null,
-    val picture: String? = null,
-    val birthday: String? = null,
-    val gender: String? = null,
-    val ethnicity: String? = null,
-    val religion: String? = null,
-    val figure: String? = null,
-    val height: Int? = null,
-    val maritalStatus: String? = null,
-    val occupation: String? = null,
-    val aboutMe: String? = null,
-    val locationTitle: String? = null,
-    val latitude: Float? = null,
-    val longitude: Float? = null,
-    val updatedAt: String? = null
+    var displayName: String? = null,
+    var realName: String? = null,
+    var picture: String? = null,
+    var birthday: String? = null,
+    var gender: String? = null,
+    var ethnicity: String? = null,
+    var religion: String? = null,
+    var height: Int? = null,
+    var maritalStatus: String? = null,
+    var occupation: String? = null,
+    var aboutMe: String? = null,
+    var locationTitle: String? = null,
+    var latitude: Float? = null,
+    var longitude: Float? = null,
+    var updatedAt: String? = null
 )
 
 
@@ -32,7 +31,6 @@ fun ProfileEntity?.mapToData(): ProfileData =
         gender = this?.gender,
         ethnicity = this?.ethnicity,
         religion = this?.religion,
-        figure = this?.figure,
         height = this?.height,
         maritalStatus = this?.maritalStatus,
         occupation = this?.occupation,

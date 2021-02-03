@@ -9,7 +9,7 @@ on:
 jobs:
   test:
     name: Run Unit Tests
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v1
@@ -17,12 +17,12 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Unit tests
+      - name: Run Unit tests
         run: bash ./gradlew test
 
   apk:
     name: Generate Debug APK
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v1
@@ -31,7 +31,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Build debug APK
-        run: bash ./gradlew assembleDebug --stacktrace
+        run: bash ./gradlew assembleDebug
       - name: Upload APK
         uses: actions/upload-artifact@v1
         with:

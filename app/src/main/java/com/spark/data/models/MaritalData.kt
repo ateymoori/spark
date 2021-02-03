@@ -4,14 +4,14 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.spark.domain.models.SingleValueEntity
 
-open class ReligionData @JvmOverloads constructor(
+open class MaritalData @JvmOverloads constructor(
     @Expose
     @SerializedName("title") val title: String?=null,
     @Expose
     @SerializedName("id") val id: Int? = null
 )
 
-fun ReligionData?.mapToSingleValue(): SingleValueEntity =
+fun MaritalData?.mapToSingleValue(): SingleValueEntity =
     SingleValueEntity(
         title = this?.title
     )

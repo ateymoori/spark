@@ -161,17 +161,6 @@
             app:layout_constraintStart_toStartOf="@+id/fullNameEdt"
             app:layout_constraintTop_toBottomOf="@+id/fullNameEdt" />
 
-        <com.spark.presentation.utils.components.edittext.PEditText
-            android:id="@+id/figureSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_man"
-            android:hint="@string/figure"
-            app:kind="spinner"
-            app:layout_constraintEnd_toEndOf="@+id/fullNameEdt"
-            app:layout_constraintStart_toStartOf="@+id/fullNameEdt"
-            app:layout_constraintTop_toBottomOf="@+id/fullNameEdt" />
-
 
         <com.spark.presentation.utils.components.edittext.PEditText
             android:id="@+id/maritalSpinner"

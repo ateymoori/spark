@@ -1,7 +1,9 @@
 package com.spark.data.api
 
 import com.spark.data.models.EthnicityData
+import com.spark.data.models.MaritalData
 import com.spark.data.models.ProfileData
+import com.spark.data.models.ReligionData
 import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.*
@@ -13,11 +15,11 @@ interface RestApi {
 
 
     @GET("religions")
-    suspend fun getReligions(): Response<List<EthnicityData>>
+    suspend fun getReligions(): Response<List<ReligionData>>
 
 
     @GET("maritals")
-    suspend fun getMaritalList(): Response<List<EthnicityData>>
+    suspend fun getMaritalList(): Response<List<MaritalData>>
 
 
     @GET("profile")

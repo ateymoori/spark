@@ -19,7 +19,7 @@ class UpdateProfile @Inject constructor(
     }
 
 
-    private fun validateForm(data: ProfileEntity?): Either<Exception, ProfileEntity> {
+    fun validateForm(data: ProfileEntity?): Either<Exception, ProfileEntity> {
         if (data == null)
             return Either.Left(Exception("Data is null"))
 
@@ -31,6 +31,9 @@ class UpdateProfile @Inject constructor(
 
         if (data.birthday.isNullOrEmpty())
             return Either.Left(Exception("Birthday is Mandatory"))
+
+        if (data.height !in 90..230 )
+            return Either.Left(Exception("Height should be in 90CM-230CM"))
 
         if (data.gender.isNullOrEmpty())
             return Either.Left(Exception("Gender is Mandatory"))
