@@ -11,7 +11,6 @@ import com.spark.R
 import com.spark.data.utils.*
 import com.spark.domain.models.SingleValueEntity
 import com.spark.presentation.utils.components.base.BaseFragment
-import com.spark.presentation.utils.components.base.Either
 import com.spark.presentation.utils.components.base.SingleValueAdapter
 import com.spark.presentation.utils.components.bottomSheetList.base.IBaseItemListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +21,7 @@ import com.spark.domain.models.ProfileEntity as ProfileEntity
 @AndroidEntryPoint
 class EditProfileFragment : BaseFragment() {
 
+    private lateinit var newAvatarFile: File
     private lateinit var adapterGenders: SingleValueAdapter
     private lateinit var adapterReligions: SingleValueAdapter
     private lateinit var adapterMarital: SingleValueAdapter
@@ -50,7 +50,7 @@ class EditProfileFragment : BaseFragment() {
         }
 
 
-        viewModel.ethnicities.observe(viewLifecycleOwner, {
+        viewModel.ethnicitiesState.observe(viewLifecycleOwner, {
             it.onSuccess { data ->
                 adapterReligions =
                     SingleValueAdapter(
@@ -74,7 +74,7 @@ class EditProfileFragment : BaseFragment() {
 
         })
 
-        viewModel.religions.observe(viewLifecycleOwner, {
+        viewModel.religionsState.observe(viewLifecycleOwner, {
             it.onSuccess { data ->
                 adapterReligions =
                     SingleValueAdapter(
@@ -99,7 +99,7 @@ class EditProfileFragment : BaseFragment() {
 
         })
 
-        viewModel.maritalList.observe(viewLifecycleOwner, {
+        viewModel.maritalListState.observe(viewLifecycleOwner, {
             it.onSuccess { data ->
                 adapterMarital =
                     SingleValueAdapter(
@@ -142,8 +142,8 @@ class EditProfileFragment : BaseFragment() {
         if (requestCode == GALLERY_CODE) {
             val uri = data?.data
             if (uri != null && activity != null) {
-                val file = File(FilePickUtils.getPath(requireActivity(), uri))
-                avatar.loadFile(file)
+                newAvatarFile = File(FilePickUtils.getPath(requireActivity(), uri))
+                avatar.loadFile(newAvatarFile)
                 //compressAndUpload(file)
             }
         }
@@ -174,12 +174,16 @@ class EditProfileFragment : BaseFragment() {
     }
 
     private fun initLiveDataListeners() {
-        viewModel.profile.observe(viewLifecycleOwner, {
+        viewModel.profileState.observe(viewLifecycleOwner, {
             it.onSuccess { showProfile(it) }
             it.onError { showError(it) }
         })
-        viewModel.saveProfile.observe(viewLifecycleOwner, {
-            it.onSuccess { showMessage("profileSaved") }
+        viewModel.updateProfileState.observe(viewLifecycleOwner, {
+            it.onSuccess { showMessage("Profile Saved") }
+            it.onError { showError(it) }
+        })
+        viewModel.uploadAvatarState.observe(viewLifecycleOwner, {
+            it.onSuccess { showMessage("Avatar Uploaded") }
             it.onError { showError(it) }
         })
 
@@ -220,13 +224,15 @@ class EditProfileFragment : BaseFragment() {
                 occupation = occupationEdt.getText(),
                 aboutMe = aboutMeEdt.getText(),
                 locationTitle = locationEdt.getText(),
-                picture = null,
                 latitude = null,
                 longitude = null,
-                updatedAt = null,
-                pictureUpload = null
+                updatedAt = null
             )
         )
+
+        //Call uploader, if new avatar selected from gallery
+        if (::newAvatarFile.isInitialized)
+            viewModel.uploadAvatar(newAvatarFile)
 
     }
 

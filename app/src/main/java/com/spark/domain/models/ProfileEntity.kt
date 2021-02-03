@@ -20,8 +20,7 @@ data class ProfileEntity(
     val locationTitle: String? = null,
     val latitude: Float? = null,
     val longitude: Float? = null,
-    val updatedAt: String? = null,
-    val pictureUpload: File? = null,
+    val updatedAt: String? = null
 )
 
 
@@ -29,7 +28,6 @@ fun ProfileEntity?.mapToData(): ProfileData =
     ProfileData(
         displayName = this?.displayName,
         realName = this?.realName,
-        pictureUpload = this?.pictureUpload,
         birthday = this?.birthday,
         gender = this?.gender,
         ethnicity = this?.ethnicity,

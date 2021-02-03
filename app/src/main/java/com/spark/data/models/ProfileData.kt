@@ -39,6 +39,8 @@ open class ProfileData @JvmOverloads constructor(
     @Expose
     @SerializedName("updated_at")
     val updatedAt: String? = null,
+    @Expose
+    @SerializedName("picture_upload")
     val pictureUpload: File? = null
 )
 

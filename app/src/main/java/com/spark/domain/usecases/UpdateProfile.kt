@@ -2,32 +2,20 @@ package com.spark.domain.usecases
 
 import com.spark.data.utils.Resource
 import com.spark.domain.models.ProfileEntity
-import com.spark.domain.models.mapToData
 import com.spark.domain.repositories.ProfileRepository
 import com.spark.presentation.utils.components.base.Either
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 
 import javax.inject.Inject
 
-@Suppress("DeferredResultUnused")
 class UpdateProfile @Inject constructor(
     private val profileRepo: ProfileRepository
-) : UseCase<Flow<Resource<ProfileEntity>>, ProfileEntity>() {
+) : UseCase<Resource<ProfileEntity>, ProfileEntity>() {
 
-    override fun getData(data: ProfileEntity?): Flow<Resource<ProfileEntity>> {
-
-        return flow {
-            emit(
-                when (val result = validateForm(data)) {
-                    is Either.Left -> Resource.Failure.Generic(result.a.message)
-                    is Either.Right -> profileRepo.updateProfile(result.b)
-                }
-            )
-        }.flowOn(Dispatchers.IO)
+    override suspend fun invoke(data: ProfileEntity?): Resource<ProfileEntity> {
+        return when (val result = validateForm(data)) {
+            is Either.Left -> Resource.Failure.Generic(result.a.message)
+            is Either.Right -> profileRepo.updateProfile(result.b)
+        }
     }
 
 

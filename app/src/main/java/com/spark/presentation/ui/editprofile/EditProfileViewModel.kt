@@ -9,22 +9,24 @@ import com.spark.data.utils.Resource
 import com.spark.domain.models.ProfileEntity
 import com.spark.domain.models.SingleValueEntity
 import com.spark.domain.usecases.*
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.io.File
 
 class EditProfileViewModel @ViewModelInject constructor(
     private val getEthnicities: GetEthnicities,
     private val getReligions: GetReligions,
     private val getMaritalList: GetMaritalList,
     private val getProfile: GetProfile,
-    private val updateProfile: UpdateProfile
+    private val updateProfile: UpdateProfile,
+    private val uploadAvatar: UploadAvatar
 ) : ViewModel(), LifecycleObserver {
 
-    val ethnicities = MutableLiveData<Resource<List<SingleValueEntity>>>()
-    val religions = MutableLiveData<Resource<List<SingleValueEntity>>>()
-    val maritalList = MutableLiveData<Resource<List<SingleValueEntity>>>()
-    val profile = MutableLiveData<Resource<ProfileEntity>>()
-    val saveProfile = MutableLiveData<Resource<ProfileEntity>>()
+    val ethnicitiesState = MutableLiveData<Resource<List<SingleValueEntity>>>()
+    val religionsState = MutableLiveData<Resource<List<SingleValueEntity>>>()
+    val maritalListState = MutableLiveData<Resource<List<SingleValueEntity>>>()
+    val profileState = MutableLiveData<Resource<ProfileEntity>>()
+    val updateProfileState = MutableLiveData<Resource<ProfileEntity>>()
+    val uploadAvatarState = MutableLiveData<Resource<ProfileEntity>>()
 
     init {
         getEnthnics()
@@ -35,43 +37,40 @@ class EditProfileViewModel @ViewModelInject constructor(
 
     private fun getEnthnics() {
         viewModelScope.launch {
-            getEthnicities.getData().collect {
-                ethnicities.postValue(it)
-            }
+            ethnicitiesState.postValue(getEthnicities.invoke())
         }
     }
 
     private fun getReligions() {
         viewModelScope.launch {
-            getReligions.getData().collect {
-                religions.postValue(it)
-            }
+            religionsState.postValue(getReligions.invoke())
         }
     }
 
     private fun getMaritalList() {
         viewModelScope.launch {
-            getMaritalList.getData().collect {
-                maritalList.postValue(it)
-            }
+            maritalListState.postValue(getMaritalList.invoke())
         }
     }
+
     private fun getProfile() {
         viewModelScope.launch {
-            getProfile.getData().collect {
-                profile.postValue(it)
-            }
+            profileState.postValue(getProfile.invoke())
         }
     }
 
-
-    fun saveProfile(profile: ProfileEntity?){
+    fun saveProfile(profile: ProfileEntity?) {
         viewModelScope.launch {
-            updateProfile.getData(profile).collect {
-                saveProfile.postValue(it)
-            }
+            updateProfileState.postValue(updateProfile.invoke(profile))
         }
     }
 
+    fun uploadAvatar(avatar: File?) {
+        avatar?.let {
+            viewModelScope.launch {
+                uploadAvatarState.postValue(uploadAvatar.invoke(avatar))
+            }
+        }
+    }
 
 }

@@ -1,12 +1,9 @@
 package com.spark.data.repositories
 
 import com.spark.data.api.RestApi
-import com.spark.data.models.mapToEntity
 import com.spark.data.models.mapToSingleValue
 import com.spark.data.utils.*
 import com.spark.domain.models.SingleValueEntity
-import com.spark.domain.models.TestEntity
-import com.spark.domain.repositories.AppSettingsRepository
 import com.spark.domain.repositories.EthnicityRepository
 import javax.inject.Inject
 
