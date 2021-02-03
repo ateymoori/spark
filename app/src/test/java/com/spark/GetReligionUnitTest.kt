@@ -1,112 +1,69 @@
 package com.spark
 
-import com.spark.data.repositories.ReligionsRepositoryImpl
 import com.spark.data.utils.*
 import com.spark.domain.models.SingleValueEntity
 import com.spark.domain.repositories.ReligionsRepository
 import com.spark.domain.usecases.GetReligions
-import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
-
 import org.junit.Assert.*
 import org.junit.Before
-import org.junit.Rule
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
 class GetReligionUnitTest {
 
 
-//    val fakeReligionsList = mutableListOf<SingleValueEntity>()
-//
-//
-//    @Mock
-//    private lateinit var religionRepository: ReligionsRepository
-//
-//    @Before
-//    fun setup() {
-//        MockitoAnnotations.initMocks(this)
-//
-//        fakeReligionsList.add(SingleValueEntity("Islam"))
-//        fakeReligionsList.add(SingleValueEntity("Atheism"))
-//        fakeReligionsList.add(SingleValueEntity("Buddhism"))
-//    }
-//
-//    @Test
-//    fun getReligions() {
-//        runBlocking {
-//            val fakeList = Resource.Success<List<SingleValueEntity>>(
-//                fakeReligionsList
-//            )
-//
-//            Mockito.`when`(religionRepository.getReligions()).thenReturn(fakeList)
-//
-//            val flow = flow {
-//                emit(Resource.Loading<SingleValueEntity>("loading"))
-//                delay(100)
-//                emit(fakeList)
-//            }
-//
-//
-//            flow.collect { data ->
-//                data.onSuccess {
-//                    assertEquals(data, fakeList)
-//                }
-//                data.onLoading {
-//                    assertEquals(data, 9)
-//                }
-//            }
-//
-//            val getReligions = GetReligions(religionRepository)
-//            getReligions.getData().collect { data ->
-//                data.onSuccess {
-//                    assertEquals(data, religionRepository)
-//                }
-//                data.onError {
-//                    assertEquals(data, 88)
-//                }
-//            }
-//
-//        }
-//    }
+    val fakeReligionsList = mutableListOf<SingleValueEntity>()
+    val networkError = "On network error"
+    val religions = listOf("Islam", "Atheism", "Buddhism")
 
-//    @Test
-//    fun testFlow() {
-//        runBlocking {
-//
-//            val flow = flow {
-//                emit(Resource.Loading<SingleValueEntity>("loading"))
-//                delay(10)
-//                emit(Resource.Success<List<SingleValueEntity>>())
-//            }
-//
-//
-//            val aaa = Resource.Success<List<SingleValueEntity>>(
-//                mutableListOf(
-//                    SingleValueEntity("")
-//                )
-//            )
-//            val religionRepository = Mockito.mock(ReligionsRepository::class.java)
-//
-//            Mockito.`when`(religionRepository.getReligions()).thenReturn(aaa)
-//
-//            val getReligions = GetReligions(religionRepository)
-//            getReligions.getData().collect {
-//                it.onSuccess {
-//                    assertEquals(it?.size, 1)
-//                }
-//            }
-//        }
-//    }
+    @Mock
+    private lateinit var religionRepository: ReligionsRepository
+
+    @Before
+    fun setup() {
+        MockitoAnnotations.initMocks(this)
+        religions.map { SingleValueEntity(it) }
+    }
+
+    @Test
+    fun `test success religions repository and usecase, true if sizes are equal`() {
+        runBlocking {
+            val fakeList = Resource.Success<List<SingleValueEntity>>(
+                fakeReligionsList
+            )
+
+            Mockito.`when`(religionRepository.getReligions()).thenReturn(fakeList)
+
+            val getReligions = GetReligions(religionRepository)
+
+            getReligions.invoke().onSuccess {
+                assertEquals(it?.size, fakeReligionsList.size)
+            }
+        }
+    }
+
+    @Test
+    fun `test error religions repository and usecase, true if output is network error`() {
+        runBlocking {
+            val value = Resource.Failure.NetworkException(networkError)
+
+            Mockito.`when`(religionRepository.getReligions()).thenReturn(value)
+
+            val getReligions = GetReligions(religionRepository)
+
+            getReligions.invoke().onLoading {
+                assertTrue(false)
+            }.onSuccess {
+                assertTrue(false)
+            }.onError {
+                assertTrue(false)
+            }.onNetworkError {
+                assertEquals(it, networkError)
+            }
+        }
+    }
 
 }

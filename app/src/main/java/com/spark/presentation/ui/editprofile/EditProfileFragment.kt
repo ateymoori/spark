@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.spark.R
 import com.spark.data.utils.*
 import com.spark.domain.models.SingleValueEntity
@@ -181,6 +182,9 @@ class EditProfileFragment : BaseFragment() {
         viewModel.updateProfileState.observe(viewLifecycleOwner, {
             it.onSuccess { showMessage("Profile Saved") }
             it.onError { showError(it) }
+            Navigation.findNavController(updateProfileBtn).navigate(
+                R.id.action_editProfileFragment_to_showProfileFragment
+            )
         })
         viewModel.uploadAvatarState.observe(viewLifecycleOwner, {
             it.onSuccess { showMessage("Avatar Uploaded") }

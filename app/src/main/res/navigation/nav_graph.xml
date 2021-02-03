@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/showProfileFragment"
-        android:name="com.spark.ShowProfileFragment"
+        android:name="com.spark.presentation.ui.showprofile.ShowProfileFragment"
         android:label="fragment_show_profile"
         tools:layout="@layout/fragment_show_profile" />
 </navigation>

@@ -11,6 +11,7 @@ class GetProfile @Inject constructor(
 ) : UseCase<Resource<ProfileEntity>, Nothing>() {
 
     override suspend fun invoke(data: Nothing?): Resource<ProfileEntity> {
+
         return profileRepo.getProfile()
 
     }

@@ -60,12 +60,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/nameFamilyAbbr"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center" />
+
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/avatar"

@@ -1,59 +1,65 @@
-package com.spark
+package com.spark.presentation.ui.showprofile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import com.spark.R
+import com.spark.data.utils.GsonUtils.toStringByGson
+import com.spark.data.utils.Resource
+import com.spark.data.utils.loadUrl
+import com.spark.data.utils.log
+import com.spark.domain.models.ProfileEntity
+import com.spark.presentation.ui.editprofile.EditProfileViewModel
+import com.spark.presentation.utils.components.base.BaseFragment
+import com.spark.presentation.utils.ext.gone
+import com.spark.presentation.utils.ext.visible
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_show_profile.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+@AndroidEntryPoint
+class ShowProfileFragment : BaseFragment() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ShowProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ShowProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val viewModel: ShowProfileViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_show_profile, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ShowProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ShowProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.profileState.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Success -> showProfile(it.data)
+                is Resource.Loading -> loading.visible()
+                is Resource.Failure.Generic -> TODO()
+                is Resource.Failure.NetworkException -> TODO()
+                is Resource.Failure.UnAuthorized -> TODO()
             }
+        })
     }
+
+    private fun showProfile(profile: ProfileEntity?) {
+        loading.gone()
+        profile?.apply {
+            avatar.loadUrl(picture)
+            displayNameTv.setText(displayName)
+            realNameTv.setText(realName)
+            birthdayTv.setText(birthday)
+            genderTv.setText(gender)
+            ethnicityTv.setText(ethnicity)
+            religionTv.setText(religion)
+            heightTv.setText(height.toString())
+            maritalTv.setText(maritalStatus)
+            occupationTV.setText(occupation)
+            locationTv.setText(locationTitle)
+        }
+    }
+
 }
