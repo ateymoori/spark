@@ -13,7 +13,7 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
-class GetReligionsTest{
+class GetReligionsTest {
 
 
     val fakeReligionsList = mutableListOf<SingleValueEntity>()
@@ -63,40 +63,5 @@ class GetReligionsTest{
             }
         }
     }
-
-
-    @Test
-    fun `test getReligions repository impl`() {
-        runBlocking {
-
-//            val mockResponseBody = Mockito.mock(ProfileData::class.java)
-//            val mockResponse = Response.success(mockResponseBody)
-//
-//            Mockito.`when`(restApi.getProfile()).thenReturn(mockResponse)
-//
-//            val impl = ProfileRepositoryImpl(restApi)
-//            println(restApi.getProfile().isSuccessful)
-//
-//            impl.getProfile().onNetworkError {
-//                println(it)
-//            }.onSuccess {
-//                println(it)
-//            }.onError { println(it) }
-
-//            val feedRepository = Mockito.spy(ProfileRepositoryImpl(restApi))
-////            val getReligions = ProfileRepositoryImpl(restApi).getProfile()
-//
-//            feedRepository.getProfile().onSuccess {
-//                assertTrue(true)
-//            }.onError {
-//                System.out.println(it)
-//            }.onNetworkError {
-//                assertTrue(false)
-//            }
-//            assertTrue(false)
-
-        }
-    }
-
 
 }

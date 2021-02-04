@@ -16,5 +16,7 @@
     <string name="about_me">About Me</string>
     <string name="location">Location</string>
     <string name="update_profile">Update Profile</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="show_profile">Show Profile</string>
 
 </resources>

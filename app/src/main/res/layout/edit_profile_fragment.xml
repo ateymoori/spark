@@ -36,7 +36,7 @@
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="@dimen/padding60px"
             android:background="@drawable/shape_top_24dp"
             android:gravity="center"
             android:orientation="vertical"
@@ -241,6 +241,27 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="@dimen/padding32px"
+            android:layout_height="@dimen/padding32px"
+            android:layout_margin="@dimen/padding12px"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintBottom_toTopOf="@id/constraintLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_profile"
+            android:textColor="@color/white"
+            android:textSize="@dimen/headerFontSize"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

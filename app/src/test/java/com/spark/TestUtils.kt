@@ -34,6 +34,17 @@ class UnitTestUtils {
             SingleValueEntity("Russian") ,
         )
 
+        val fakeReligions = listOf(
+            SingleValueEntity("Buddhism") ,
+            SingleValueEntity("Christianity") ,
+            SingleValueEntity("Hinduism")
+        )
+        val fakeMarital = listOf(
+            SingleValueEntity("Divorced") ,
+            SingleValueEntity("Married") ,
+            SingleValueEntity("Widowed")
+        )
+
 
         val fakeNetworkError = "Network connection error."
     }

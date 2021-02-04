@@ -29,7 +29,6 @@ class EditProfileViewModel @ViewModelInject constructor(
     val updateProfileState = SingleLiveEvent<Resource<ProfileEntity>>()
     val uploadAvatarState = SingleLiveEvent<Resource<ProfileEntity>>()
 
-
     fun onViewResumed() {
         getEnthnics()
         getReligions()
@@ -62,17 +61,18 @@ class EditProfileViewModel @ViewModelInject constructor(
         }
     }
 
-    fun saveProfile(profile: ProfileEntity?) {
+    fun updateProfile(profile: ProfileEntity?) {
         viewModelScope.launch {
             updateProfileState.postValue(updateProfile.invoke(profile))
         }
     }
 
     fun uploadAvatar(avatar: File?) {
-        avatar?.let {
-            viewModelScope.launch {
-                uploadAvatarState.postValue(uploadAvatar.invoke(avatar))
+        viewModelScope.launch {
+            if(avatar==null){
+                uploadAvatarState.postValue(Resource.Failure.Generic(""))
             }
+            uploadAvatarState.postValue(uploadAvatar.invoke(avatar))
         }
     }
 

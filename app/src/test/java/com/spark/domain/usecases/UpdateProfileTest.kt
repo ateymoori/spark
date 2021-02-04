@@ -3,6 +3,7 @@ package com.spark.domain.usecases
 import com.spark.UnitTestUtils
 import com.spark.data.utils.*
 import com.spark.domain.repositories.ProfileRepository
+import com.spark.presentation.utils.Constants
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.junit.Assert.*
@@ -10,7 +11,7 @@ import org.junit.Before
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-class UpdateProfileTest{
+class UpdateProfileTest {
 
     @Mock
     private lateinit var profileRepository: ProfileRepository
@@ -33,7 +34,7 @@ class UpdateProfileTest{
             updateProfileUC.invoke(profile).onSuccess {
                 assertTrue(false)
             }.onError {
-                assertEquals(it, "Display-Name size should be in 2-256")
+                assertEquals(it, Constants.DISPLAY_NAME_ERROR)
             }
         }
     }
@@ -45,7 +46,7 @@ class UpdateProfileTest{
             updateProfileUC.invoke(profile).onSuccess {
                 assertTrue(false)
             }.onError {
-                assertEquals(it, "Display-Name size should be in 2-256")
+                assertEquals(it, Constants.DISPLAY_NAME_ERROR)
             }
         }
     }
@@ -53,11 +54,11 @@ class UpdateProfileTest{
     @Test
     fun `test validation DisplayName LONG, assert onError`() {
         runBlocking {
-            profile.displayName = "a".repeat(300)
+            profile.displayName = "a".repeat(Constants.DISPLAYNAME_MAX_SIZE + 1)
             updateProfileUC.invoke(profile).onSuccess {
                 assertTrue(false)
             }.onError {
-                assertEquals(it, "Display-Name size should be in 2-256")
+                assertEquals(it, Constants.DISPLAY_NAME_ERROR)
             }
         }
     }
@@ -86,7 +87,7 @@ class UpdateProfileTest{
             updateProfileUC.invoke(profile).onSuccess {
                 assertTrue(false)
             }.onError {
-                assertEquals(it, "Real-Name size should be in 2-256")
+                assertEquals(it, Constants.REAL_NAME_ERROR)
             }
         }
     }
@@ -98,7 +99,7 @@ class UpdateProfileTest{
             updateProfileUC.invoke(profile).onSuccess {
                 assertTrue(false)
             }.onError {
-                assertEquals(it, "Real-Name size should be in 2-256")
+                assertEquals(it, Constants.REAL_NAME_ERROR)
             }
         }
     }
@@ -106,11 +107,11 @@ class UpdateProfileTest{
     @Test
     fun `test validation RealName LONG, assert onError`() {
         runBlocking {
-            profile.realName = "a".repeat(300)
+            profile.realName = "a".repeat(Constants.REALNAME_MAX_SIZE + 1)
             updateProfileUC.invoke(profile).onSuccess {
                 assertTrue(false)
             }.onError {
-                assertEquals(it, "Real-Name size should be in 2-256")
+                assertEquals(it, Constants.REAL_NAME_ERROR)
             }
         }
     }
@@ -138,7 +139,7 @@ class UpdateProfileTest{
             updateProfileUC.invoke(profile).onSuccess {
                 assertTrue(false)
             }.onError {
-                assertEquals(it, "Gender is Mandatory")
+                assertEquals(it, Constants.GENDER_NULL_ERROR)
             }
         }
     }
@@ -158,14 +159,15 @@ class UpdateProfileTest{
     @Test
     fun `test validation Height 80CM, assert onError`() {
         runBlocking {
-            profile.height = 80
+            profile.height = Constants.HEIGHT_MIN_SIZE - 10
             updateProfileUC.invoke(profile).onSuccess {
                 assertTrue(false)
             }.onError {
-                assertEquals(it, "Height should be in 90CM-230CM")
+                assertEquals(it, Constants.HEIGHT_ERROR)
             }
         }
     }
+
 
 
 }

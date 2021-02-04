@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.edit_profile_fragment.*
 import kotlinx.android.synthetic.main.edit_profile_fragment.avatar
 import kotlinx.android.synthetic.main.edit_profile_fragment.avatarContainer
 import kotlinx.android.synthetic.main.edit_profile_fragment.loading
-import kotlinx.android.synthetic.main.fragment_show_profile.*
 import java.io.File
 import com.spark.domain.models.ProfileEntity as ProfileEntity
 
@@ -142,6 +141,10 @@ class EditProfileFragment : BaseFragment() {
             }
         }
 
+        backBtn.setOnClickListener {
+            activity?.onBackPressed()
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -176,7 +179,6 @@ class EditProfileFragment : BaseFragment() {
                         genderSpinner.dismiss()
                     }
                 })
-
 
     }
 
@@ -227,7 +229,7 @@ class EditProfileFragment : BaseFragment() {
 
 
     private fun updateProfile() {
-        viewModel.saveProfile(
+        viewModel.updateProfile(
             ProfileEntity(
                 displayName = displayNameEdt.getText(),
                 realName = realNameEdt.getText(),

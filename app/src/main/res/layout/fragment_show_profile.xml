@@ -24,7 +24,7 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/padding48px"
+        android:layout_marginTop="@dimen/padding60px"
         android:background="@drawable/shape_top_24dp"
         android:padding="@dimen/padding16px"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -76,75 +76,14 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/displayNameTv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center" />
 
-            <TextView
-                android:id="@+id/realNameTv"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/detailsLv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center" />
-
-            <TextView
-                android:id="@+id/birthdayTv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center" />
-
-            <TextView
-                android:id="@+id/genderTv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center" />
-
-            <TextView
-                android:id="@+id/ethnicityTv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center" />
-
-            <TextView
-                android:id="@+id/religionTv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center" />
-
-            <TextView
-                android:id="@+id/heightTv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center" />
-
-            <TextView
-                android:id="@+id/maritalTv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center" />
-
-            <TextView
-                android:id="@+id/occupationTV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center" />
-
-            <TextView
-                android:id="@+id/locationTv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/profile_details_item" />
 
 
         </LinearLayout>
@@ -175,6 +114,28 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_profile"
+        android:textColor="@color/white"
+        android:textSize="@dimen/headerFontSize"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/editBtn"
+        android:layout_width="@dimen/padding32px"
+        android:layout_height="@dimen/padding32px"
+        android:layout_margin="@dimen/padding12px"
+        android:src="@drawable/ic_contract"
+        app:layout_constraintBottom_toTopOf="@id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/white" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

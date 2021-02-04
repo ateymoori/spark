@@ -42,7 +42,7 @@ class ShowProfileViewModelTest {
 
     @ExperimentalCoroutinesApi
     @Test
-    fun `Integration test GetProfile(Repo,UseCase,VM), return Success`() {
+    fun `GetProfile(Repo,UseCase,VM), return Success`() {
         runBlockingTest {
 
             val fakeProfile = Resource.Success(UnitTestUtils.fakeProfile)
