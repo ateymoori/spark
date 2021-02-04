@@ -2,7 +2,7 @@ package com.spark.data.utils
 
 sealed class Resource<out T> {
     data class Success<out T>(val data: T?) : Resource<T>()
-    data class Loading<out T>(val msg: String?) : Resource<T>()
+    data class Loading<out T>(val msg: String?=null) : Resource<T>()
     sealed class Failure(val error: String?) : Resource<Nothing>() {
         class Generic(e: String?) : Failure(e)
         class NetworkException(e: String?) : Failure(e)

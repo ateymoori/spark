@@ -61,6 +61,7 @@ class ShowProfileViewModelTest {
             result.onError {
                 assertTrue(false)
             }
+
         }
     }
 

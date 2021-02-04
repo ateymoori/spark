@@ -30,32 +30,32 @@ class EditProfileViewModel @ViewModelInject constructor(
     val uploadAvatarState = SingleLiveEvent<Resource<ProfileEntity>>()
 
 
-    fun onViewResumed(){
+    fun onViewResumed() {
         getEnthnics()
         getReligions()
         getMaritalList()
         getProfile()
     }
 
-    private fun getEnthnics() {
+    fun getEnthnics() {
         viewModelScope.launch {
             ethnicitiesState.postValue(getEthnicities.invoke())
         }
     }
 
-    private fun getReligions() {
+    fun getReligions() {
         viewModelScope.launch {
             religionsState.postValue(getReligions.invoke())
         }
     }
 
-    private fun getMaritalList() {
+    fun getMaritalList() {
         viewModelScope.launch {
             maritalListState.postValue(getMaritalList.invoke())
         }
     }
 
-    private fun getProfile() {
+    fun getProfile() {
         viewModelScope.launch {
             profileState.postValue(Resource.Loading(""))
             profileState.postValue(getProfile.invoke())

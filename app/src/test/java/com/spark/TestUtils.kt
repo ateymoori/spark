@@ -3,6 +3,7 @@ package com.spark
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.spark.domain.models.ProfileEntity
+import com.spark.domain.models.SingleValueEntity
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
@@ -25,6 +26,14 @@ class UnitTestUtils {
             latitude = null,
             longitude = null
         )
+
+        val fakeEthnics = listOf(
+            SingleValueEntity("Asian") ,
+            SingleValueEntity("American") ,
+            SingleValueEntity("Iranian") ,
+            SingleValueEntity("Russian") ,
+        )
+
 
         val fakeNetworkError = "Network connection error."
     }

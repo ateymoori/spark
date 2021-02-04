@@ -40,6 +40,10 @@ android {
     testOptions {
         unitTests.returnDefaultValues = true
     }
+    packagingOptions {
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+    }
 }
 
 dependencies {
@@ -130,7 +134,6 @@ dependencies {
 
     api "com.makeramen:roundedimageview:2.3.0"
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
-//    implementation 'com.github.amspayam:AlertView-Android:1.2.0'
 
 
 }

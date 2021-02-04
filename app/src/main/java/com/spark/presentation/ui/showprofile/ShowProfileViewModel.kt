@@ -22,7 +22,7 @@ class ShowProfileViewModel @ViewModelInject constructor(
 
     fun getProfile() {
         viewModelScope.launch {
-            profileState.postValue(Resource.Loading(""))
+            profileState.postValue(Resource.Loading())
             profileState.postValue(getProfile.invoke())
         }
     }
