@@ -1,9 +1,8 @@
-package com.spark
+package com.spark.domain.usecases
 
+import com.spark.UnitTestUtils
 import com.spark.data.utils.*
-import com.spark.domain.models.ProfileEntity
 import com.spark.domain.repositories.ProfileRepository
-import com.spark.domain.usecases.UpdateProfile
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.junit.Assert.*
@@ -11,34 +10,18 @@ import org.junit.Before
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-class UpdateProfileUnitTest {
-
+class UpdateProfileTest{
 
     @Mock
     private lateinit var profileRepository: ProfileRepository
 
-    private lateinit var profile: ProfileEntity
+    private var profile = UnitTestUtils.fakeProfile.copy()
 
     lateinit var updateProfileUC: UpdateProfile
 
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
-        profile = ProfileEntity(
-            displayName = "AmirHossein",
-            realName = "AmirHossein Teymoori",
-            birthday = "07-03-1989",
-            gender = "Male",
-            ethnicity = "Iranian",
-            religion = "Christianity",
-            height = 176,
-            maritalStatus = "Married",
-            occupation = "Android Developer",
-            aboutMe = "I am Amir!",
-            locationTitle = "Kuala Lumpur, Malaysia",
-            latitude = null,
-            longitude = null
-        )
         updateProfileUC = UpdateProfile(profileRepository)
     }
 
@@ -93,9 +76,6 @@ class UpdateProfileUnitTest {
 
         }
     }
-
-
-
 
 
     //RealName
@@ -162,6 +142,7 @@ class UpdateProfileUnitTest {
             }
         }
     }
+
     @Test
     fun `test validation Gender Female, assert onSuccess`() {
         runBlocking {
@@ -185,7 +166,6 @@ class UpdateProfileUnitTest {
             }
         }
     }
-
 
 
 }

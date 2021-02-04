@@ -12,211 +12,235 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/bgImgv"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/background" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/bgImgv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/background" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/shape_opacity" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/shape_opacity" />
 
-    <LinearLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:background="@drawable/shape_top_24dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="@dimen/padding20px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/shape_top_24dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/padding20px"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/avatarContainer"
+                android:layout_width="100dp"
+                android:layout_height="100dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="42dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/avatar"
+                        android:layout_width="84dp"
+                        android:layout_height="84dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/background"
+                        app:riv_border_color="@color/gray"
+                        app:riv_border_width="0.5dp"
+                        app:riv_oval="true" />
+                </androidx.cardview.widget.CardView>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:elevation="10dp"
+                    android:src="@drawable/ic_sm_camera"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/avatarContainer"
+                    app:tint="@color/darkGray" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <com.spark.presentation.utils.components.edittext.PEditText
+                android:id="@+id/displayNameEdt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_user"
+                android:hint="@string/display_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.spark.presentation.utils.components.edittext.PEditText
+                android:id="@+id/realNameEdt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_user"
+                android:hint="@string/real_name"
+                app:layout_constraintEnd_toEndOf="@+id/fullNameEdt"
+                app:layout_constraintStart_toStartOf="@+id/fullNameEdt"
+                app:layout_constraintTop_toBottomOf="@+id/fullNameEdt" />
+
+            <com.spark.presentation.utils.components.edittext.PEditText
+                android:id="@+id/birthdayEdt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_calendar"
+                android:hint="@string/birthday"
+                app:kind="date"
+                app:layout_constraintEnd_toEndOf="@+id/fullNameEdt"
+                app:layout_constraintStart_toStartOf="@+id/fullNameEdt"
+                app:layout_constraintTop_toBottomOf="@+id/fullNameEdt" />
+
+            <com.spark.presentation.utils.components.edittext.PEditText
+                android:id="@+id/genderSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_gender"
+                android:hint="@string/gender"
+                app:kind="spinner"
+                app:layout_constraintEnd_toEndOf="@+id/fullNameEdt"
+                app:layout_constraintStart_toStartOf="@+id/fullNameEdt"
+                app:layout_constraintTop_toBottomOf="@+id/fullNameEdt" />
+
+            <com.spark.presentation.utils.components.edittext.PEditText
+                android:id="@+id/ethnicitySpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_mask"
+                android:hint="@string/ethnicity"
+                app:kind="spinner"
+                app:layout_constraintEnd_toEndOf="@+id/fullNameEdt"
+                app:layout_constraintStart_toStartOf="@+id/fullNameEdt"
+                app:layout_constraintTop_toBottomOf="@+id/fullNameEdt" />
+
+            <com.spark.presentation.utils.components.edittext.PEditText
+                android:id="@+id/religionSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_pray"
+                android:hint="@string/religion"
+                app:kind="spinner"
+                app:layout_constraintEnd_toEndOf="@+id/fullNameEdt"
+                app:layout_constraintStart_toStartOf="@+id/fullNameEdt"
+                app:layout_constraintTop_toBottomOf="@+id/fullNameEdt" />
+
+            <com.spark.presentation.utils.components.edittext.PEditText
+                android:id="@+id/heightEdt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_height"
+                android:hint="@string/height"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="@+id/fullNameEdt"
+                app:layout_constraintStart_toStartOf="@+id/fullNameEdt"
+                app:layout_constraintTop_toBottomOf="@+id/fullNameEdt" />
+
+
+            <com.spark.presentation.utils.components.edittext.PEditText
+                android:id="@+id/maritalSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_wedding_ring"
+                android:hint="@string/marital_status"
+                app:kind="spinner"
+                app:layout_constraintEnd_toEndOf="@+id/phoneNumberEdt"
+                app:layout_constraintStart_toStartOf="@+id/phoneNumberEdt"
+                app:layout_constraintTop_toBottomOf="@+id/phoneNumberEdt" />
+
+            <com.spark.presentation.utils.components.edittext.PEditText
+                android:id="@+id/occupationEdt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_worker"
+                android:hint="@string/occupation"
+                android:maxLength="256"
+                app:layout_constraintEnd_toEndOf="@+id/phoneNumberEdt"
+                app:layout_constraintStart_toStartOf="@+id/phoneNumberEdt"
+                app:layout_constraintTop_toBottomOf="@+id/emailEdt" />
+
+            <com.spark.presentation.utils.components.edittext.PEditText
+                android:id="@+id/aboutMeEdt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_contract"
+                android:hint="@string/about_me"
+                android:imeOptions="actionGo"
+                android:maxLength="5000"
+                app:layout_constraintEnd_toEndOf="@+id/emailEdt"
+                app:layout_constraintStart_toStartOf="@+id/emailEdt"
+                app:layout_constraintTop_toBottomOf="@+id/addressEdt" />
+
+            <com.spark.presentation.utils.components.edittext.PEditText
+                android:id="@+id/locationEdt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_map_pin_primary_24"
+                android:hint="@string/location"
+                android:imeOptions="actionGo"
+                app:layout_constraintEnd_toEndOf="@+id/emailEdt"
+                app:layout_constraintStart_toStartOf="@+id/emailEdt"
+                app:layout_constraintTop_toBottomOf="@+id/addressEdt" />
+
+            <com.spark.presentation.utils.components.button.PButton
+                android:id="@+id/updateProfileBtn"
+                style="@style/ContainedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding19px"
+                android:text="@string/update_profile"
+                android:textColor="@color/textPrimaryDark"
+                app:layout_constraintEnd_toEndOf="@+id/passwordEdt"
+                app:layout_constraintStart_toStartOf="@+id/passwordEdt" />
+        </LinearLayout>
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/avatarContainer"
-            android:layout_width="100dp"
-            android:layout_height="100dp">
+            android:id="@+id/loading"
+            android:layout_width="match_parent"
+            android:layout_height="760dp"
+            android:layout_marginTop="@dimen/padding24px"
+            android:background="@color/whiteOpacity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/constraintLayout">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
+            <com.github.ybq.android.spinkit.SpinKitView
+                style="@style/SpinKitView.CubeGrid"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="42dp"
+                app:SpinKit_Color="@color/colorPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent" />
 
-
-
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/avatar"
-                    android:layout_width="84dp"
-                    android:layout_height="84dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/background"
-                    app:riv_border_color="@color/gray"
-                    app:riv_border_width="0.5dp"
-                    app:riv_oval="true" />
-            </androidx.cardview.widget.CardView>
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="4dp"
-                android:elevation="10dp"
-                android:src="@drawable/ic_sm_camera"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/avatarContainer"
-                app:tint="@color/darkGray" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <com.spark.presentation.utils.components.edittext.PEditText
-            android:id="@+id/displayNameEdt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_user"
-            android:hint="@string/display_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.spark.presentation.utils.components.edittext.PEditText
-            android:id="@+id/realNameEdt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_user"
-            android:hint="@string/real_name"
-            app:layout_constraintEnd_toEndOf="@+id/fullNameEdt"
-            app:layout_constraintStart_toStartOf="@+id/fullNameEdt"
-            app:layout_constraintTop_toBottomOf="@+id/fullNameEdt" />
-
-        <com.spark.presentation.utils.components.edittext.PEditText
-            android:id="@+id/birthdayEdt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_calendar"
-            android:hint="@string/birthday"
-            app:kind="date"
-            app:layout_constraintEnd_toEndOf="@+id/fullNameEdt"
-            app:layout_constraintStart_toStartOf="@+id/fullNameEdt"
-            app:layout_constraintTop_toBottomOf="@+id/fullNameEdt" />
-
-        <com.spark.presentation.utils.components.edittext.PEditText
-            android:id="@+id/genderSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_gender"
-            android:hint="@string/gender"
-            app:kind="spinner"
-            app:layout_constraintEnd_toEndOf="@+id/fullNameEdt"
-            app:layout_constraintStart_toStartOf="@+id/fullNameEdt"
-            app:layout_constraintTop_toBottomOf="@+id/fullNameEdt" />
-
-        <com.spark.presentation.utils.components.edittext.PEditText
-            android:id="@+id/ethnicitySpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_mask"
-            android:hint="@string/ethnicity"
-            app:kind="spinner"
-            app:layout_constraintEnd_toEndOf="@+id/fullNameEdt"
-            app:layout_constraintStart_toStartOf="@+id/fullNameEdt"
-            app:layout_constraintTop_toBottomOf="@+id/fullNameEdt" />
-
-        <com.spark.presentation.utils.components.edittext.PEditText
-            android:id="@+id/religionSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_pray"
-            android:hint="@string/religion"
-            app:kind="spinner"
-            app:layout_constraintEnd_toEndOf="@+id/fullNameEdt"
-            app:layout_constraintStart_toStartOf="@+id/fullNameEdt"
-            app:layout_constraintTop_toBottomOf="@+id/fullNameEdt" />
-
-        <com.spark.presentation.utils.components.edittext.PEditText
-            android:id="@+id/heightEdt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_height"
-            android:hint="@string/height"
-            android:inputType="number"
-            app:layout_constraintEnd_toEndOf="@+id/fullNameEdt"
-            app:layout_constraintStart_toStartOf="@+id/fullNameEdt"
-            app:layout_constraintTop_toBottomOf="@+id/fullNameEdt" />
-
-
-        <com.spark.presentation.utils.components.edittext.PEditText
-            android:id="@+id/maritalSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_wedding_ring"
-            android:hint="@string/marital_status"
-            app:kind="spinner"
-            app:layout_constraintEnd_toEndOf="@+id/phoneNumberEdt"
-            app:layout_constraintStart_toStartOf="@+id/phoneNumberEdt"
-            app:layout_constraintTop_toBottomOf="@+id/phoneNumberEdt" />
-
-        <com.spark.presentation.utils.components.edittext.PEditText
-            android:id="@+id/occupationEdt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_worker"
-            android:hint="@string/occupation"
-            android:maxLength="256"
-            app:layout_constraintEnd_toEndOf="@+id/phoneNumberEdt"
-            app:layout_constraintStart_toStartOf="@+id/phoneNumberEdt"
-            app:layout_constraintTop_toBottomOf="@+id/emailEdt" />
-
-        <com.spark.presentation.utils.components.edittext.PEditText
-            android:id="@+id/aboutMeEdt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_contract"
-            android:hint="@string/about_me"
-            android:imeOptions="actionGo"
-            android:maxLength="5000"
-            app:layout_constraintEnd_toEndOf="@+id/emailEdt"
-            app:layout_constraintStart_toStartOf="@+id/emailEdt"
-            app:layout_constraintTop_toBottomOf="@+id/addressEdt" />
-
-        <com.spark.presentation.utils.components.edittext.PEditText
-            android:id="@+id/locationEdt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_map_pin_primary_24"
-            android:hint="@string/location"
-            android:imeOptions="actionGo"
-            app:layout_constraintEnd_toEndOf="@+id/emailEdt"
-            app:layout_constraintStart_toStartOf="@+id/emailEdt"
-            app:layout_constraintTop_toBottomOf="@+id/addressEdt" />
-
-        <com.spark.presentation.utils.components.button.PButton
-            android:id="@+id/updateProfileBtn"
-            style="@style/ContainedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/padding19px"
-            android:text="@string/update_profile"
-            android:textColor="@color/textPrimaryDark"
-            app:layout_constraintEnd_toEndOf="@+id/passwordEdt"
-            app:layout_constraintStart_toStartOf="@+id/passwordEdt" />
-    </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

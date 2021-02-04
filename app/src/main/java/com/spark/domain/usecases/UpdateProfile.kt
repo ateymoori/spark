@@ -18,7 +18,6 @@ class UpdateProfile @Inject constructor(
         }
     }
 
-
     fun validateForm(data: ProfileEntity?): Either<Exception, ProfileEntity> {
         if (data == null)
             return Either.Left(Exception("Data is null"))
@@ -46,6 +45,5 @@ class UpdateProfile @Inject constructor(
 
         return Either.Right(data)
     }
-
 
 }

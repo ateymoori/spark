@@ -18,7 +18,7 @@ class UploadAvatar @Inject constructor(
         }
     }
 
-    private fun validateForm(avatar: File?): Either<Exception, File> {
+      fun validateForm(avatar: File?): Either<Exception, File> {
         if (avatar == null)
             return Either.Left(Exception("File is empty"))
 

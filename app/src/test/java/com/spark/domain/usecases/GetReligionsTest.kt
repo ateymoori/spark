@@ -1,16 +1,10 @@
-package com.spark
+package com.spark.domain.usecases
 
+import com.spark.UnitTestUtils
 import com.spark.data.api.RestApi
-import com.spark.data.models.ProfileData
-import com.spark.data.models.ReligionData
-import com.spark.data.repositories.MaritalListRepositoryImpl
-import com.spark.data.repositories.ProfileRepositoryImpl
-import com.spark.data.repositories.ReligionsRepositoryImpl
 import com.spark.data.utils.*
 import com.spark.domain.models.SingleValueEntity
 import com.spark.domain.repositories.ReligionsRepository
-import com.spark.domain.usecases.GetReligions
-import io.mockk.InternalPlatformDsl.toArray
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.junit.Assert.*
@@ -18,25 +12,18 @@ import org.junit.Before
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
-import retrofit2.Response
 
-class GetReligionUnitTest {
+class GetReligionsTest{
 
 
     val fakeReligionsList = mutableListOf<SingleValueEntity>()
-    val networkError = "On network error"
-    val religions = listOf("Islam", "Atheism", "Buddhism")
 
     @Mock
     private lateinit var religionRepository: ReligionsRepository
 
-    @Mock
-    private lateinit var restApi: RestApi
-
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
-        religions.map { SingleValueEntity(it) }
     }
 
     @Test
@@ -59,7 +46,7 @@ class GetReligionUnitTest {
     @Test
     fun `test error religions repository and use-case, true if output is network error`() {
         runBlocking {
-            val value = Resource.Failure.NetworkException(networkError)
+            val value = Resource.Failure.NetworkException(UnitTestUtils.fakeNetworkError)
 
             Mockito.`when`(religionRepository.getReligions()).thenReturn(value)
 
@@ -72,7 +59,7 @@ class GetReligionUnitTest {
             }.onError {
                 assertTrue(false)
             }.onNetworkError {
-                assertEquals(it, networkError)
+                assertEquals(it, UnitTestUtils.fakeNetworkError)
             }
         }
     }

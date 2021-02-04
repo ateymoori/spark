@@ -9,6 +9,7 @@ import com.spark.data.utils.Resource
 import com.spark.domain.models.ProfileEntity
 import com.spark.domain.models.SingleValueEntity
 import com.spark.domain.usecases.*
+import com.spark.presentation.utils.components.base.SingleLiveEvent
 import kotlinx.coroutines.launch
 import java.io.File
 
@@ -25,10 +26,11 @@ class EditProfileViewModel @ViewModelInject constructor(
     val religionsState = MutableLiveData<Resource<List<SingleValueEntity>>>()
     val maritalListState = MutableLiveData<Resource<List<SingleValueEntity>>>()
     val profileState = MutableLiveData<Resource<ProfileEntity>>()
-    val updateProfileState = MutableLiveData<Resource<ProfileEntity>>()
-    val uploadAvatarState = MutableLiveData<Resource<ProfileEntity>>()
+    val updateProfileState = SingleLiveEvent<Resource<ProfileEntity>>()
+    val uploadAvatarState = SingleLiveEvent<Resource<ProfileEntity>>()
 
-    init {
+
+    fun onViewResumed(){
         getEnthnics()
         getReligions()
         getMaritalList()
@@ -55,6 +57,7 @@ class EditProfileViewModel @ViewModelInject constructor(
 
     private fun getProfile() {
         viewModelScope.launch {
+            profileState.postValue(Resource.Loading(""))
             profileState.postValue(getProfile.invoke())
         }
     }

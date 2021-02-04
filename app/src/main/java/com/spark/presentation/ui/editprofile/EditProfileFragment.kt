@@ -14,20 +14,26 @@ import com.spark.domain.models.SingleValueEntity
 import com.spark.presentation.utils.components.base.BaseFragment
 import com.spark.presentation.utils.components.base.SingleValueAdapter
 import com.spark.presentation.utils.components.bottomSheetList.base.IBaseItemListener
+import com.spark.presentation.utils.ext.gone
+import com.spark.presentation.utils.ext.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.edit_profile_fragment.*
+import kotlinx.android.synthetic.main.edit_profile_fragment.avatar
+import kotlinx.android.synthetic.main.edit_profile_fragment.avatarContainer
+import kotlinx.android.synthetic.main.edit_profile_fragment.loading
+import kotlinx.android.synthetic.main.fragment_show_profile.*
 import java.io.File
 import com.spark.domain.models.ProfileEntity as ProfileEntity
 
 @AndroidEntryPoint
 class EditProfileFragment : BaseFragment() {
 
+    private val viewModel: EditProfileViewModel by viewModels()
+
     private lateinit var newAvatarFile: File
     private lateinit var adapterGenders: SingleValueAdapter
     private lateinit var adapterReligions: SingleValueAdapter
     private lateinit var adapterMarital: SingleValueAdapter
-
-    private val viewModel: EditProfileViewModel by viewModels()
     private val GALLERY_CODE = 1000
 
     override fun onCreateView(
@@ -176,7 +182,11 @@ class EditProfileFragment : BaseFragment() {
 
     private fun initLiveDataListeners() {
         viewModel.profileState.observe(viewLifecycleOwner, {
-            it.onSuccess { showProfile(it) }
+            it.onSuccess {
+                showProfile(it)
+            }.onLoading {
+                loading.visible()
+            }
             it.onError { showError(it) }
         })
         viewModel.updateProfileState.observe(viewLifecycleOwner, {
@@ -198,6 +208,7 @@ class EditProfileFragment : BaseFragment() {
     }
 
     private fun showProfile(profile: ProfileEntity?) {
+        loading.gone()
         profile?.apply {
             avatar.loadUrl(picture)
             displayNameEdt.setText(displayName)
@@ -239,6 +250,11 @@ class EditProfileFragment : BaseFragment() {
         if (::newAvatarFile.isInitialized)
             viewModel.uploadAvatar(newAvatarFile)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.onViewResumed()
     }
 
 
