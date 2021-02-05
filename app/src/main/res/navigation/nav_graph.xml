@@ -6,11 +6,6 @@
     app:startDestination="@id/showProfileFragment">
 
     <fragment
-        android:id="@+id/dashboardFragment"
-        android:name="com.spark.presentation.ui.dashboard.DashboardFragment"
-        android:label="dashboard_fragment"
-        tools:layout="@layout/dashboard_fragment" />
-    <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.spark.presentation.ui.editprofile.EditProfileFragment"
         android:label="edit_profile_fragment"

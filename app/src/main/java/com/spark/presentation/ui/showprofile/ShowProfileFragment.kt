@@ -74,6 +74,10 @@ class ShowProfileFragment : BaseFragment() {
 
     private fun showLoading(show: Boolean) = if (show) loading?.visible() else loading.gone()
 
+    override fun onResume() {
+        super.onResume()
+//        viewModel.onViewResumed()
+    }
 
     private fun mapProfileList(profile: ProfileEntity?): MutableList<SingleValueEntity> {
         with(profile) {

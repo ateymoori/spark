@@ -15,6 +15,7 @@ class ShowProfileViewModel @ViewModelInject constructor(
 ) : ViewModel(), LifecycleObserver {
 
     val profileState = MutableLiveData<Resource<ProfileEntity>>()
+    val test = MutableLiveData<Resource<ProfileEntity>>()
 
     init {
         getProfile()
