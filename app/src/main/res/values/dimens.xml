@@ -1,0 +1,44 @@
+<resources>
+    <dimen name="smallFontSize">12sp</dimen>
+    <dimen name="subTitleFontSize">13sp</dimen>
+    <dimen name="bodyFontSize">14sp</dimen>
+    <dimen name="hintFontSize">16sp</dimen>
+    <dimen name="titleFontSize">18sp</dimen>
+    <dimen name="headerFontSize">24sp</dimen>
+
+    <dimen name="cardElevation">4dp</dimen>
+    <dimen name="cardCornerRadius">8dp</dimen>
+
+
+    <dimen name="halfButtonWidth">160dp</dimen>
+    <dimen name="halfButtonHeight">56dp</dimen>
+
+    <dimen name="padding0px">0dp</dimen>
+    <dimen name="padding1px">1dp</dimen>
+    <dimen name="padding2px">2dp</dimen>
+    <dimen name="padding4px">4dp</dimen>
+    <dimen name="padding6px">6dp</dimen>
+    <dimen name="padding8px">8dp</dimen>
+    <dimen name="padding12px">12dp</dimen>
+    <dimen name="padding16px">16dp</dimen>
+    <dimen name="padding18px">18dp</dimen>
+    <dimen name="padding19px">19dp</dimen>
+    <dimen name="padding20px">20dp</dimen>
+    <dimen name="padding24px">24dp</dimen>
+    <dimen name="padding28px">28dp</dimen>
+    <dimen name="padding32px">32dp</dimen>
+    <dimen name="padding38px">38dp</dimen>
+    <dimen name="padding40px">40dp</dimen>
+    <dimen name="padding48px">48dp</dimen>
+    <dimen name="padding54px">54dp</dimen>
+    <dimen name="padding60px">60dp</dimen>
+    <dimen name="padding64px">64dp</dimen>
+    <dimen name="padding86px">86dp</dimen>
+    <dimen name="padding96px">96dp</dimen>
+    <dimen name="padding106px">106dp</dimen>
+    <dimen name="padding128px">128dp</dimen>
+    <dimen name="padding148px">148dp</dimen>
+    <dimen name="padding168px">168dp</dimen>
+    <dimen name="padding320px">320dp</dimen>
+
+</resources>

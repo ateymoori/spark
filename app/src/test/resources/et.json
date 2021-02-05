@@ -1,0 +1,422 @@
+[
+  {
+    "id": 1,
+    "title": "African",
+    "type": "enthic"
+  },
+  {
+    "id": 2,
+    "title": "African American",
+    "type": "enthic"
+  },
+  {
+    "id": 3,
+    "title": "Albanian",
+    "type": "enthic"
+  },
+  {
+    "id": 4,
+    "title": "Anabaptist",
+    "type": "enthic"
+  },
+  {
+    "id": 5,
+    "title": "Arab",
+    "type": "enthic"
+  },
+  {
+    "id": 6,
+    "title": "Argentine",
+    "type": "enthic"
+  },
+  {
+    "id": 7,
+    "title": "Armenian",
+    "type": "enthic"
+  },
+  {
+    "id": 8,
+    "title": "Asian",
+    "type": "enthic"
+  },
+  {
+    "id": 9,
+    "title": "Austrian",
+    "type": "enthic"
+  },
+  {
+    "id": 10,
+    "title": "Bangladeshi",
+    "type": "enthic"
+  },
+  {
+    "id": 11,
+    "title": "Basque",
+    "type": "enthic"
+  },
+  {
+    "id": 12,
+    "title": "Belarusian",
+    "type": "enthic"
+  },
+  {
+    "id": 13,
+    "title": "Belgian",
+    "type": "enthic"
+  },
+  {
+    "id": 14,
+    "title": "Bosnian",
+    "type": "enthic"
+  },
+  {
+    "id": 15,
+    "title": "Brazilian",
+    "type": "enthic"
+  },
+  {
+    "id": 16,
+    "title": "British",
+    "type": "enthic"
+  },
+  {
+    "id": 17,
+    "title": "Bulgarian",
+    "type": "enthic"
+  },
+  {
+    "id": 18,
+    "title": "Cajun",
+    "type": "enthic"
+  },
+  {
+    "id": 19,
+    "title": "Cambodian",
+    "type": "enthic"
+  },
+  {
+    "id": 20,
+    "title": "Canadian",
+    "type": "enthic"
+  },
+  {
+    "id": 21,
+    "title": "Cape Verdean",
+    "type": "enthic"
+  },
+  {
+    "id": 22,
+    "title": "Caribbean",
+    "type": "enthic"
+  },
+  {
+    "id": 23,
+    "title": "Carpatho-Rusyn",
+    "type": "enthic"
+  },
+  {
+    "id": 24,
+    "title": "Chilean",
+    "type": "enthic"
+  },
+  {
+    "id": 25,
+    "title": "Chinese",
+    "type": "enthic"
+  },
+  {
+    "id": 26,
+    "title": "Croatian",
+    "type": "enthic"
+  },
+  {
+    "id": 27,
+    "title": "Cuban",
+    "type": "enthic"
+  },
+  {
+    "id": 28,
+    "title": "Czech",
+    "type": "enthic"
+  },
+  {
+    "id": 29,
+    "title": "Danish",
+    "type": "enthic"
+  },
+  {
+    "id": 30,
+    "title": "Dutch",
+    "type": "enthic"
+  },
+  {
+    "id": 31,
+    "title": "East Indian",
+    "type": "enthic"
+  },
+  {
+    "id": 32,
+    "title": "Ecuadorian",
+    "type": "enthic"
+  },
+  {
+    "id": 33,
+    "title": "Estonian",
+    "type": "enthic"
+  },
+  {
+    "id": 34,
+    "title": "Ethiopian",
+    "type": "enthic"
+  },
+  {
+    "id": 35,
+    "title": "Filipino",
+    "type": "enthic"
+  },
+  {
+    "id": 36,
+    "title": "Finnish",
+    "type": "enthic"
+  },
+  {
+    "id": 37,
+    "title": "French",
+    "type": "enthic"
+  },
+  {
+    "id": 38,
+    "title": "German",
+    "type": "enthic"
+  },
+  {
+    "id": 39,
+    "title": "Greek",
+    "type": "enthic"
+  },
+  {
+    "id": 40,
+    "title": "Haitian",
+    "type": "enthic"
+  },
+  {
+    "id": 41,
+    "title": "Hungarian",
+    "type": "enthic"
+  },
+  {
+    "id": 42,
+    "title": "Icelandic",
+    "type": "enthic"
+  },
+  {
+    "id": 43,
+    "title": "Indians of North America",
+    "type": "enthic"
+  },
+  {
+    "id": 59,
+    "title": "Iranian",
+    "type": "enthic"
+  },
+  {
+    "id": 44,
+    "title": "Irish",
+    "type": "enthic"
+  },
+  {
+    "id": 45,
+    "title": "Italian",
+    "type": "enthic"
+  },
+  {
+    "id": 46,
+    "title": "Japanese",
+    "type": "enthic"
+  },
+  {
+    "id": 47,
+    "title": "Jewish",
+    "type": "enthic"
+  },
+  {
+    "id": 48,
+    "title": "Korean",
+    "type": "enthic"
+  },
+  {
+    "id": 49,
+    "title": "Latin American",
+    "type": "enthic"
+  },
+  {
+    "id": 50,
+    "title": "Latvian",
+    "type": "enthic"
+  },
+  {
+    "id": 51,
+    "title": "Lebanese",
+    "type": "enthic"
+  },
+  {
+    "id": 52,
+    "title": "Lithuanian",
+    "type": "enthic"
+  },
+  {
+    "id": 53,
+    "title": "Luxembourger",
+    "type": "enthic"
+  },
+  {
+    "id": 54,
+    "title": "Macedonian",
+    "type": "enthic"
+  },
+  {
+    "id": 55,
+    "title": "Malaysian",
+    "type": "enthic"
+  },
+  {
+    "id": 56,
+    "title": "Maltese",
+    "type": "enthic"
+  },
+  {
+    "id": 57,
+    "title": "Mexican",
+    "type": "enthic"
+  },
+  {
+    "id": 58,
+    "title": "Middle Eastern",
+    "type": "enthic"
+  },
+  {
+    "id": 60,
+    "title": "Norwegian",
+    "type": "enthic"
+  },
+  {
+    "id": 61,
+    "title": "Pacific Islander",
+    "type": "enthic"
+  },
+  {
+    "id": 62,
+    "title": "Pakistani",
+    "type": "enthic"
+  },
+  {
+    "id": 63,
+    "title": "Palestinian",
+    "type": "enthic"
+  },
+  {
+    "id": 64,
+    "title": "Polish",
+    "type": "enthic"
+  },
+  {
+    "id": 65,
+    "title": "Portuguese",
+    "type": "enthic"
+  },
+  {
+    "id": 66,
+    "title": "Romanian",
+    "type": "enthic"
+  },
+  {
+    "id": 67,
+    "title": "Russian",
+    "type": "enthic"
+  },
+  {
+    "id": 68,
+    "title": "Scandinavian",
+    "type": "enthic"
+  },
+  {
+    "id": 69,
+    "title": "Scottish",
+    "type": "enthic"
+  },
+  {
+    "id": 70,
+    "title": "Serbian",
+    "type": "enthic"
+  },
+  {
+    "id": 71,
+    "title": "Slavic",
+    "type": "enthic"
+  },
+  {
+    "id": 72,
+    "title": "Slovak",
+    "type": "enthic"
+  },
+  {
+    "id": 73,
+    "title": "Slovenian",
+    "type": "enthic"
+  },
+  {
+    "id": 74,
+    "title": "Spanish",
+    "type": "enthic"
+  },
+  {
+    "id": 75,
+    "title": "Swedish",
+    "type": "enthic"
+  },
+  {
+    "id": 76,
+    "title": "Swiss",
+    "type": "enthic"
+  },
+  {
+    "id": 77,
+    "title": "Syrian",
+    "type": "enthic"
+  },
+  {
+    "id": 78,
+    "title": "Thai",
+    "type": "enthic"
+  },
+  {
+    "id": 79,
+    "title": "Turkish",
+    "type": "enthic"
+  },
+  {
+    "id": 80,
+    "title": "Ukranian",
+    "type": "enthic"
+  },
+  {
+    "id": 81,
+    "title": "Vietnamese",
+    "type": "enthic"
+  },
+  {
+    "id": 82,
+    "title": "Welsh",
+    "type": "enthic"
+  },
+  {
+    "id": 83,
+    "title": "West Indian",
+    "type": "enthic"
+  },
+  {
+    "id": 84,
+    "title": "Yugoslavian",
+    "type": "enthic"
+  }
+]
