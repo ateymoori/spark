@@ -1,9 +1,9 @@
 
 # Spark, a simple Android app to explain the clean architecture
 
-<img src="https://parkup.app/website/screens/1.jpg" alt="Android Architecture " width=200 />
-<img src="https://parkup.app/website/screens/2.jpg" alt="Android Architecture " width=200 /> 
-<img src="https://parkup.app/website/screens/3.jpg" alt="Android Architecture " width=200 /> 
+<img src="https://parkup.app/website/screens/1.jpg" alt="Android Architecture " width=200 />&nbsp;
+<img src="https://parkup.app/website/screens/2.jpg" alt="Android Architecture " width=200 />&nbsp;
+<img src="https://parkup.app/website/screens/3.jpg" alt="Android Architecture " width=200 />&nbsp; 
 <img src="https://parkup.app/website/screens/4.jpg" alt="Android Architecture " width=200 />
 
 <br>
