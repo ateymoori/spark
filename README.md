@@ -1,68 +1,56 @@
 
-# Spark , a simple Android app tho explain clean architecture
+# Spark, a simple Android app to explain the clean architecture
+
+<img src="https://parkup.app/website/screens/1.jpg" alt="Android Architecture " width=200 />
+<img src="https://parkup.app/website/screens/2.jpg" alt="Android Architecture " width=200 /> 
+<img src="https://parkup.app/website/screens/3.jpg" alt="Android Architecture " width=200 /> 
+<img src="https://parkup.app/website/screens/4.jpg" alt="Android Architecture " width=200 />
+
+<br>
+
+### Spark app is a simple Android application to explain clean architecture in android + CI/CD with Github Actions
+#### I've separated it into 3 major layers.
+<img src="https://parkup.app/website/screens/5.png" alt="Android Architecture " width=230 />
+
+#### 1- Presentation Layer
+    - Fragments      (By Android Navigation Component, Single Activity)
+    - ViewModels     (Communicate with Use-Cases, Return LiveData)
+#### 2- Domain Layer
+    - Entities  (Core of system. The app's units)
+    - UseCases       (A bridge between Presentation and Data layers, System logic)
+    - Contracts      (Explain how layers can provide/access to data)
+#### 3- Data Layer
+    - Repositories (implement Domain layer's contracts, get Data from Repos and map them to Domain layer's entity)
+    - DataEntities  (get from APIs or DB)   
+    
+
+### Test
+I've covered the most important layers as much as possible. But still needs to write more Unit/Ui tests.
+
+<img src="https://parkup.app/website/screens/7.png" alt="Android Architecture " width=330 />
+
+Also I'm using GitHub Actions as CI/CD. As I defined before, If I push the codes into any branch except master/release, All tests will run, Then If all of them passed, one APK will be built and uploads into the Github actions artifact.
+<img src="https://parkup.app/website/screens/8.png" alt="Android Architecture " width=440 /> <img src="https://parkup.app/website/screens/9.png" alt="Android Architecture " width=450 />
 
 
-[![Android face detection demo](files/thumb.png)](https://www.youtube.com/watch?v=J4-t1SiGXXQ&feature=youtu.be)
+### Technologies
+- Full Kotlin
+- Hilt for DI
+- Coroutines
+- LiveData
+- Navigation Component
+- Junit/Espresso
+- GitHub actions as CI/CD
+ 
 
 
-![Alt text](files/face_flow.png?raw=true "Face Detection Flow")
+### APIs
+I've created 6 APIs with PHP Laravel framework.
+I've published the Postman collection by this link.
+https://documenter.getpostman.com/view/6268446/TW74hQ3R
 
+<img src="https://parkup.app/website/screens/6.png" alt="Android Architecture " width=250 />
 
-This repository contains a simple Android application that implements Android Clean Architecture.
-To follow SOLID principles, I've devided the layers to 3 major layers.
-I'm using Android MVVM,LiveData and Android Navigation Component for "Presentation" layer.
-Otherwise you can get a MVVM/Kotlin and LiveData simple project with follow my other sample project.
-
-<a href="https://github.com/ateymoori/mulight">Mulight, a simple MVVM/Kotlin/LiveData/RX pattern in Android</a>
-
-[Sample APK file](files/face_detection.apk?raw=true)
-
-
-Version 1.0.5 *(Aug 6, 2019 )*
-----------------------------
-
-First commit.
- * Add: Detect facial expression added.
-
-Version 1.0.4 *(July 21, 2019 )*
-----------------------------
-
-First commit.
- * Add: Add monitor eye opening status for each eye.
- * Fix: Output image position fixed.
- * Add: Save image in internal storage to avoid get extra permission.
-
-
-Version 1.0.3 *(July 21, 2019 )*
-----------------------------
-
-First commit.
- * Add: Detect Face located in frame.
- * Add: Capture image added.
- * Add: ImageViewer activity added.
-
-
-Version 1.0.2 *(July 20, 2019 )*
-----------------------------
-
-First commit.
- * Add: Get position of detected face and compare with Face Frame position.
- * Add: Detect face located in true position and send the status with interfaces to Activity.
-
-
-Version 1.0.1 *(July 20, 2019 )*
-----------------------------
-
-First commit.
- * Add: MainActivity with detect faces added.
- * Add: FaceDetection Processor added.
-
-
-Version 1.0.0 *(July 19, 2019 )*
-----------------------------
-
-First commit.
- * Add: Firebase ML Vision added
 
 ----------------------------
 AmirHossein Teymoori

@@ -8,11 +8,12 @@ import androidx.lifecycle.viewModelScope
 import com.spark.data.utils.Resource
 import com.spark.domain.models.ProfileEntity
 import com.spark.domain.usecases.*
+import com.spark.presentation.utils.components.base.BaseViewModel
 import kotlinx.coroutines.launch
 
 class ShowProfileViewModel @ViewModelInject constructor(
     private val getProfile: GetProfile
-) : ViewModel(), LifecycleObserver {
+) : BaseViewModel(), LifecycleObserver {
 
     val profileState = MutableLiveData<Resource<ProfileEntity>>()
     val test = MutableLiveData<Resource<ProfileEntity>>()

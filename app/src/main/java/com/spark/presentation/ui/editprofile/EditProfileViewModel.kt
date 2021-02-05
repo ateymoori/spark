@@ -9,6 +9,7 @@ import com.spark.data.utils.Resource
 import com.spark.domain.models.ProfileEntity
 import com.spark.domain.models.SingleValueEntity
 import com.spark.domain.usecases.*
+import com.spark.presentation.utils.components.base.BaseViewModel
 import com.spark.presentation.utils.components.base.SingleLiveEvent
 import kotlinx.coroutines.launch
 import java.io.File
@@ -20,7 +21,7 @@ class EditProfileViewModel @ViewModelInject constructor(
     private val getProfile: GetProfile,
     private val updateProfile: UpdateProfile,
     private val uploadAvatar: UploadAvatar
-) : ViewModel(), LifecycleObserver {
+) : BaseViewModel(), LifecycleObserver {
 
     val ethnicitiesState = MutableLiveData<Resource<List<SingleValueEntity>>>()
     val religionsState = MutableLiveData<Resource<List<SingleValueEntity>>>()
