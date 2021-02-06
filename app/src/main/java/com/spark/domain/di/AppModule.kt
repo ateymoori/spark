@@ -1,7 +1,7 @@
 package com.spark.domain.di
 
 import com.spark.data.api.RestApi
-import com.spark.data.repositories.EnthnicityRepositoryImpl
+import com.spark.data.repositories.EthnicityRepositoryImpl
 import com.spark.data.repositories.MaritalListRepositoryImpl
 import com.spark.data.repositories.ProfileRepositoryImpl
 import com.spark.data.repositories.ReligionsRepositoryImpl
@@ -28,7 +28,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideEthnicRepository(restApi: RestApi): EthnicityRepository {
-        return EnthnicityRepositoryImpl(restApi)
+        return EthnicityRepositoryImpl(restApi)
     }
 
     @Provides

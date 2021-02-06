@@ -12,7 +12,6 @@ class GetMaritalList @Inject constructor(
 
     override suspend fun invoke(data: Nothing?): Resource<List<SingleValueEntity>> {
         return maritalRepo.getMaritalList()
-
     }
 
 }

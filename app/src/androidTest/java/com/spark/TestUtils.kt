@@ -4,11 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.spark.domain.models.ProfileEntity
 import com.spark.domain.models.SingleValueEntity
+import java.io.InputStreamReader
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
 
-
+class FileReader(path: String) {
+    val content: String
+    init {
+        val reader = InputStreamReader(this.javaClass.classLoader?.getResourceAsStream(path))
+        content = reader.readText()
+        reader.close()
+    }
+}
 
 
 //extension for unit-test, wait until get liveData result
