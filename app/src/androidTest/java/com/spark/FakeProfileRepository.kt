@@ -1,4 +1,4 @@
-package com.spark.presentation.ui.showprofile
+package com.spark
 
 import com.spark.data.utils.Resource
 import com.spark.domain.models.ProfileEntity

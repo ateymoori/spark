@@ -9,10 +9,12 @@ import androidx.navigation.Navigation
 import com.spark.R
 import com.spark.data.utils.Resource
 import com.spark.data.utils.loadUrl
+import com.spark.data.utils.log
 import com.spark.domain.models.ProfileEntity
 import com.spark.domain.models.SingleValueEntity
 import com.spark.presentation.ui.showprofile.adapter.ProfileDetailsAdapter
 import com.spark.presentation.utils.components.base.BaseFragment
+import com.spark.presentation.utils.components.base.EspressoIdlingResource
 import com.spark.presentation.utils.ext.add
 import com.spark.presentation.utils.ext.gone
 import com.spark.presentation.utils.ext.visible
@@ -35,6 +37,8 @@ class ShowProfileFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        EspressoIdlingResource.increment()
 
         viewModel.profileState.observe(viewLifecycleOwner, {
             when (it) {
@@ -68,15 +72,17 @@ class ShowProfileFragment : BaseFragment() {
     private fun showProfile(profile: ProfileEntity?) {
         profile?.apply {
             avatar.loadUrl(picture)
+            lastUpdate.text = getString(R.string.last_update).add(" ").add(profile.updatedAt)
             detailsLv.adapter = ProfileDetailsAdapter(mapProfileList(profile), null)
         }
+        EspressoIdlingResource.decrement()
     }
 
     private fun showLoading(show: Boolean) = if (show) loading?.visible() else loading.gone()
 
     override fun onResume() {
         super.onResume()
-//        viewModel.onViewResumed()
+        viewModel.getProfile()
     }
 
     private fun mapProfileList(profile: ProfileEntity?): MutableList<SingleValueEntity> {

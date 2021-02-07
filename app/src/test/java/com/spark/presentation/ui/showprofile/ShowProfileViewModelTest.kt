@@ -52,6 +52,7 @@ class ShowProfileViewModelTest {
             viewModel.getProfile()
 
             val result = viewModel.profileState.getOrAwaitValue()
+
             result.onLoading {
                 assertTrue(false)
             }

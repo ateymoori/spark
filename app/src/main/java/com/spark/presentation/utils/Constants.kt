@@ -27,7 +27,7 @@ class Constants {
         val AVATAR_NULL = "Avatar is null"
 
         val MIN_AVATAR_SIZE_KB = 50
-        val MAX_AVATAR_SIZE_KB = 1024
+        val MAX_AVATAR_SIZE_KB = 2048
         val AVATAR_SIZE_ERROR = "File size should be between ${MIN_AVATAR_SIZE_KB}KB to ${MAX_AVATAR_SIZE_KB}KB"
     }
 }

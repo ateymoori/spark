@@ -1,7 +1,5 @@
 package com.spark.presentation.ui.editprofile
 
-import android.graphics.BitmapFactory
-import android.os.FileUtils
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.spark.UnitTestUtils
 import com.spark.data.utils.*
@@ -21,10 +19,8 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
-import org.mockito.Mockito.mock
 import org.mockito.MockitoAnnotations
 import java.io.File
-import java.io.FileOutputStream
 
 
 class EditProfileViewModelTest {
@@ -328,7 +324,7 @@ class EditProfileViewModelTest {
 
             Mockito.`when`(profileRepository.getProfile()).thenReturn(fakeProfile)
 
-            viewModel.onViewResumed()
+            viewModel.getData()
 
             val result = viewModel.profileState.getOrAwaitValue()
             result.onLoading {

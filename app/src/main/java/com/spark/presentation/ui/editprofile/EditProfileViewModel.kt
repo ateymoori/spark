@@ -3,13 +3,13 @@ package com.spark.presentation.ui.editprofile
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.spark.data.utils.Resource
 import com.spark.domain.models.ProfileEntity
 import com.spark.domain.models.SingleValueEntity
 import com.spark.domain.usecases.*
 import com.spark.presentation.utils.components.base.BaseViewModel
+import com.spark.presentation.utils.components.base.EspressoIdlingResource
 import com.spark.presentation.utils.components.base.SingleLiveEvent
 import kotlinx.coroutines.launch
 import java.io.File
@@ -30,7 +30,11 @@ class EditProfileViewModel @ViewModelInject constructor(
     val updateProfileState = SingleLiveEvent<Resource<ProfileEntity>>()
     val uploadAvatarState = SingleLiveEvent<Resource<ProfileEntity>>()
 
-    fun onViewResumed() {
+    init {
+         getData()
+    }
+
+    fun getData() {
         getEnthnics()
         getReligions()
         getMaritalList()
@@ -70,7 +74,7 @@ class EditProfileViewModel @ViewModelInject constructor(
 
     fun uploadAvatar(avatar: File?) {
         viewModelScope.launch {
-            if(avatar==null){
+            if (avatar == null) {
                 uploadAvatarState.postValue(Resource.Failure.Generic(""))
             }
             uploadAvatarState.postValue(uploadAvatar.invoke(avatar))
