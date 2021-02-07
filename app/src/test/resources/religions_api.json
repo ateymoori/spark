@@ -1,0 +1,92 @@
+[
+  {
+    "id": 101,
+    "title": "African Diaspora Religions",
+    "type": "religion"
+  },
+  {
+    "id": 85,
+    "title": "Atheism/Agnosticism",
+    "type": "religion"
+  },
+  {
+    "id": 86,
+    "title": "Bahá’í",
+    "type": "religion"
+  },
+  {
+    "id": 87,
+    "title": "Buddhism",
+    "type": "religion"
+  },
+  {
+    "id": 88,
+    "title": "Christianity",
+    "type": "religion"
+  },
+  {
+    "id": 89,
+    "title": "Confucianism",
+    "type": "religion"
+  },
+  {
+    "id": 90,
+    "title": "Druze",
+    "type": "religion"
+  },
+  {
+    "id": 91,
+    "title": "Gnosticism",
+    "type": "religion"
+  },
+  {
+    "id": 92,
+    "title": "Hinduism",
+    "type": "religion"
+  },
+  {
+    "id": 102,
+    "title": "Indigenous American Religions",
+    "type": "religion"
+  },
+  {
+    "id": 93,
+    "title": "Islam",
+    "type": "religion"
+  },
+  {
+    "id": 94,
+    "title": "Jainism",
+    "type": "religion"
+  },
+  {
+    "id": 95,
+    "title": "Judaism",
+    "type": "religion"
+  },
+  {
+    "id": 96,
+    "title": "Rastafarianism",
+    "type": "religion"
+  },
+  {
+    "id": 97,
+    "title": "Shinto",
+    "type": "religion"
+  },
+  {
+    "id": 98,
+    "title": "Sikhism",
+    "type": "religion"
+  },
+  {
+    "id": 100,
+    "title": "Traditional African Religions",
+    "type": "religion"
+  },
+  {
+    "id": 99,
+    "title": "Zoroastrianism",
+    "type": "religion"
+  }
+]

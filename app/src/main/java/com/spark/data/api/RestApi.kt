@@ -10,32 +10,31 @@ import retrofit2.http.*
 
 interface RestApi {
 
-    @GET("ethnicities")
+    companion object {
+        private const val API_VERSION = "v1"
+    }
+
+    @GET("$API_VERSION/ethnicities")
     suspend fun getEthnicity(): Response<List<EthnicityData>>
 
-
-    @GET("religions")
+    @GET("$API_VERSION/religions")
     suspend fun getReligions(): Response<List<ReligionData>>
 
-
-    @GET("maritals")
+    @GET("$API_VERSION/maritals")
     suspend fun getMaritalList(): Response<List<MaritalData>>
 
-
-    @GET("profile")
+    @GET("$API_VERSION/profile")
     suspend fun getProfile(): Response<ProfileData>
 
-    @POST("profile")
+    @POST("$API_VERSION/profile")
     suspend fun updateProfile(
         @Body profile: ProfileData
     ): Response<ProfileData>
 
-
     @Multipart
-    @POST("avatar")
+    @POST("$API_VERSION/avatar")
     suspend fun uploadAvatar(
         @Part avatar: MultipartBody.Part? = null
     ): Response<ProfileData>
-
 
 }

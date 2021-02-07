@@ -1,8 +1,6 @@
 package com.spark.domain.models
 
 import com.spark.data.models.ProfileData
-import java.io.File
-
 
 data class ProfileEntity(
     var displayName: String? = null,

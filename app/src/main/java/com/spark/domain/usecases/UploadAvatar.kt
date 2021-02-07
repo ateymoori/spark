@@ -22,7 +22,7 @@ class UploadAvatar @Inject constructor(
         }
     }
 
-    fun validateForm(avatar: File?): Either<Exception, File> {
+    private fun validateForm(avatar: File?): Either<Exception, File> {
         if (avatar == null)
             return Either.Left(Exception(Constants.AVATAR_NULL))
 

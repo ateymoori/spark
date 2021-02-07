@@ -14,11 +14,11 @@ class ReligionsRepositoryImpl @Inject constructor(
 
     override suspend fun getReligions(): Resource<List<SingleValueEntity>> {
         getResult { restApi.getReligions() }.onSuccess {
-            return Resource.Success(it?.map {it.mapToSingleValue()  } )
+            return Resource.Success(it?.map { it.mapToSingleValue() })
         }.onError {
             return Resource.Failure.Generic(it)
         }
-        return Resource.Failure.Generic("Error")
+        return Resource.Failure.Generic(null)
     }
 
 }

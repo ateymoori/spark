@@ -3,6 +3,7 @@ package com.spark.data.repositories
 import com.spark.data.api.RestApi
 import com.spark.data.models.mapToEntity
 import com.spark.data.utils.*
+import com.spark.data.utils.GsonUtils.toStringByGson
 import com.spark.domain.models.ProfileEntity
 import com.spark.domain.models.mapToData
 import com.spark.domain.repositories.ProfileRepository
@@ -32,7 +33,7 @@ class ProfileRepositoryImpl @Inject constructor(
         getResult { restApi.updateProfile(profile.mapToData()) }.onSuccess {
             return Resource.Success(it.mapToEntity())
         }.onError {
-            return Resource.Failure.Generic(it)
+            return Resource.Failure.NetworkException(it)
         }
         return Resource.Failure.Generic("Error in Repo")
     }

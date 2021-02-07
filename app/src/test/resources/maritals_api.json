@@ -1,0 +1,27 @@
+[
+  {
+    "id": 108,
+    "title": "Divorced",
+    "type": "marital"
+  },
+  {
+    "id": 105,
+    "title": "Married",
+    "type": "marital"
+  },
+  {
+    "id": 107,
+    "title": "Separated",
+    "type": "marital"
+  },
+  {
+    "id": 109,
+    "title": "Single",
+    "type": "marital"
+  },
+  {
+    "id": 106,
+    "title": "Widowed",
+    "type": "marital"
+  }
+]

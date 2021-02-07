@@ -1,5 +1,7 @@
 package com.spark.presentation.ui.editprofile
 
+import android.graphics.BitmapFactory
+import android.os.FileUtils
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.spark.UnitTestUtils
 import com.spark.data.utils.*
@@ -18,8 +20,12 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.mock
 import org.mockito.MockitoAnnotations
 import java.io.File
+import java.io.FileOutputStream
+
 
 class EditProfileViewModelTest {
 
@@ -39,6 +45,9 @@ class EditProfileViewModelTest {
     @Mock
     private lateinit var maritalListRepository: MaritalListRepository
 
+    @Mock
+    private lateinit var avatarFile: File
+
     lateinit var viewModel: EditProfileViewModel
 
     lateinit var getProfile: GetProfile
@@ -48,6 +57,7 @@ class EditProfileViewModelTest {
     lateinit var updateProfile: UpdateProfile
     lateinit var uploadAvatar: UploadAvatar
 
+    private val fakeProfile = Resource.Success(UnitTestUtils.fakeProfile)
 
     @Before
     fun setUp() {
@@ -145,8 +155,6 @@ class EditProfileViewModelTest {
     fun `GetProfile(Repo,UseCase,VM), return Success`() {
         runBlockingTest {
 
-            val fakeProfile = Resource.Success(UnitTestUtils.fakeProfile)
-
             Mockito.`when`(profileRepository.getProfile()).thenReturn(fakeProfile)
 
             viewModel.getProfile()
@@ -171,8 +179,6 @@ class EditProfileViewModelTest {
     fun `SaveProfile(Repo,UseCase,VM), return Success`() {
         runBlockingTest {
 
-            val fakeProfile = Resource.Success(UnitTestUtils.fakeProfile)
-
             Mockito.`when`(profileRepository.updateProfile(UnitTestUtils.fakeProfile))
                 .thenReturn(fakeProfile)
 
@@ -196,8 +202,6 @@ class EditProfileViewModelTest {
     @Test
     fun `SaveProfile with Null Data (Repo,UseCase,VM), return Error`() {
         runBlockingTest {
-
-            val fakeProfile = Resource.Success(UnitTestUtils.fakeProfile)
 
             Mockito.`when`(profileRepository.updateProfile(UnitTestUtils.fakeProfile))
                 .thenReturn(fakeProfile)
@@ -224,8 +228,6 @@ class EditProfileViewModelTest {
     fun `SaveProfile with Corrupted Data (Repo,UseCase,VM), return Error`() {
         runBlockingTest {
 
-            val fakeProfile = Resource.Success(UnitTestUtils.fakeProfile)
-
             Mockito.`when`(profileRepository.updateProfile(UnitTestUtils.fakeProfile))
                 .thenReturn(fakeProfile)
 
@@ -250,8 +252,6 @@ class EditProfileViewModelTest {
     fun `SaveProfile with Null Birthday (Repo,UseCase,VM), return Error`() {
         runBlockingTest {
 
-            val fakeProfile = Resource.Success(UnitTestUtils.fakeProfile)
-
             Mockito.`when`(profileRepository.updateProfile(UnitTestUtils.fakeProfile))
                 .thenReturn(fakeProfile)
 
@@ -275,8 +275,6 @@ class EditProfileViewModelTest {
     @Test
     fun `SaveProfile with Null Marital (Repo,UseCase,VM), return Error`() {
         runBlockingTest {
-
-            val fakeProfile = Resource.Success(UnitTestUtils.fakeProfile)
 
             Mockito.`when`(profileRepository.updateProfile(UnitTestUtils.fakeProfile))
                 .thenReturn(fakeProfile)
@@ -303,8 +301,6 @@ class EditProfileViewModelTest {
     fun `SaveProfile with Null Location (Repo,UseCase,VM), return Error`() {
         runBlockingTest {
 
-            val fakeProfile = Resource.Success(UnitTestUtils.fakeProfile)
-
             Mockito.`when`(profileRepository.updateProfile(UnitTestUtils.fakeProfile))
                 .thenReturn(fakeProfile)
 
@@ -325,13 +321,10 @@ class EditProfileViewModelTest {
     }
 
 
-
     @ExperimentalCoroutinesApi
     @Test
     fun `OnViewResumed(Repo,UseCase,VM), return Success`() {
         runBlockingTest {
-
-            val fakeProfile = Resource.Success(UnitTestUtils.fakeProfile)
 
             Mockito.`when`(profileRepository.getProfile()).thenReturn(fakeProfile)
 
@@ -352,18 +345,10 @@ class EditProfileViewModelTest {
     }
 
 
-
-
-
-
     @ExperimentalCoroutinesApi
     @Test
     fun `Avatar upload with null file, Assert onError`() {
         runBlockingTest {
-
-            val fakeProfile = Resource.Success(UnitTestUtils.fakeProfile)
-
-            Mockito.`when`(profileRepository.uploadAvatar(File(""))).thenReturn(fakeProfile)
 
             viewModel.uploadAvatar(null)
 
@@ -384,14 +369,14 @@ class EditProfileViewModelTest {
 
     @ExperimentalCoroutinesApi
     @Test
-    fun `Avatar upload with zero size, Assert onError`() {
+    fun `Avatar upload with low size, Assert onError`() {
         runBlockingTest {
 
-            val fakeProfile = Resource.Success(UnitTestUtils.fakeProfile)
+            `when`(avatarFile.length()).thenReturn((Constants.MIN_AVATAR_SIZE_KB - 10).toLong())
 
-            Mockito.`when`(profileRepository.uploadAvatar(File(""))).thenReturn(fakeProfile)
+            `when`(profileRepository.uploadAvatar(avatarFile)).thenReturn(fakeProfile)
 
-            viewModel.uploadAvatar(File(""))
+            viewModel.uploadAvatar(avatarFile)
 
             val result = viewModel.uploadAvatarState.getOrAwaitValue()
             result.onLoading {
@@ -408,7 +393,31 @@ class EditProfileViewModelTest {
     }
 
 
+    @ExperimentalCoroutinesApi
+    @Test
+    fun `Avatar upload with correct size, Assert onSuccess`() {
+        runBlockingTest {
 
+            `when`(avatarFile.length()).thenReturn(((Constants.MIN_AVATAR_SIZE_KB + 10) * 1024).toLong())
+
+            `when`(profileRepository.uploadAvatar(avatarFile)).thenReturn(fakeProfile)
+
+            viewModel.uploadAvatar(avatarFile)
+
+            val result = viewModel.uploadAvatarState.getOrAwaitValue()
+
+            result.onLoading {
+                assertTrue(false)
+            }
+            result.onSuccess {
+                assertTrue(true)
+            }
+            result.onError {
+                assertTrue(false)
+            }
+
+        }
+    }
 
 
 }
