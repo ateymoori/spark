@@ -90,9 +90,9 @@ dependencies {
     androidTestImplementation 'androidx.arch.core:core-testing:2.1.0'
     // Fragment testing
 //    debugImplementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.21"
-//    debugImplementation("androidx.fragment:fragment-testing:1.2.5") {
-//        exclude group: "androidx.test", module: "core"
-//    }
+    debugImplementation("androidx.fragment:fragment-testing:1.2.5") {
+        exclude group: "androidx.test", module: "core"
+    }
 
     implementation "androidx.activity:activity-ktx:1.1.0"
     implementation "androidx.fragment:fragment-ktx:1.2.5"
@@ -150,7 +150,7 @@ dependencies {
     def hilt_jetpack_version = "1.0.0-alpha01"
 //    //noinspection GradleDependency
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_jetpack_version"
-//    kapt "androidx.hilt:hilt-compiler:$hilt_jetpack_version"
+    kapt "androidx.hilt:hilt-compiler:$hilt_jetpack_version"
 
     //Navigation Component
     def nav_version = '2.3.3'
