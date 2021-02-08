@@ -269,6 +269,30 @@ class EditProfileViewModelTest {
 
     @ExperimentalCoroutinesApi
     @Test
+    fun `SaveProfile with Wrong Birthday (Repo,UseCase,VM), return Error`() {
+        runBlockingTest {
+
+            Mockito.`when`(profileRepository.updateProfile(UnitTestUtils.fakeProfile))
+                .thenReturn(fakeProfile)
+
+            viewModel.updateProfile(UnitTestUtils.fakeProfile.copy(birthday = "11-13-335"))
+
+            val result = viewModel.updateProfileState.getOrAwaitValue()
+            result.onLoading {
+                assertTrue(false)
+            }
+            result.onSuccess {
+                assertTrue(false)
+            }
+            result.onError {
+                assertEquals(it, Constants.BIRTHDAY_WRONG_ERROR)
+            }
+
+        }
+    }
+
+    @ExperimentalCoroutinesApi
+    @Test
     fun `SaveProfile with Null Marital (Repo,UseCase,VM), return Error`() {
         runBlockingTest {
 

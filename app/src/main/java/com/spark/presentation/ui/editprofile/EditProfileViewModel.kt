@@ -30,8 +30,10 @@ class EditProfileViewModel @ViewModelInject constructor(
     val updateProfileState = SingleLiveEvent<Resource<ProfileEntity>>()
     val uploadAvatarState = SingleLiveEvent<Resource<ProfileEntity>>()
 
+    val loading = SingleLiveEvent<Boolean>()
+
     init {
-         getData()
+        getData()
     }
 
     fun getData() {
@@ -61,14 +63,17 @@ class EditProfileViewModel @ViewModelInject constructor(
 
     fun getProfile() {
         viewModelScope.launch {
-            profileState.postValue(Resource.Loading(""))
+            loading.postValue(true)
             profileState.postValue(getProfile.invoke())
+            loading.postValue(false)
         }
     }
 
     fun updateProfile(profile: ProfileEntity?) {
         viewModelScope.launch {
+            loading.postValue(true)
             updateProfileState.postValue(updateProfile.invoke(profile))
+            loading.postValue(false)
         }
     }
 

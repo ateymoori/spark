@@ -140,11 +140,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/editBtn"
-        android:layout_width="@dimen/padding32px"
-        android:layout_height="@dimen/padding32px"
-        android:layout_margin="@dimen/padding12px"
+        android:layout_width="@dimen/padding38px"
+        android:padding="@dimen/padding4px"
+        android:scaleType="fitXY"
+        android:layout_height="@dimen/padding38px"
+        android:background="@color/transparent"
+        android:layout_margin="@dimen/padding8px"
         android:src="@drawable/ic_contract"
         app:layout_constraintBottom_toTopOf="@id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"

@@ -3,6 +3,8 @@ package com.spark.presentation.ui.editprofile
 import android.Manifest
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -191,8 +193,6 @@ class EditProfileFragment : BaseFragment() {
         viewModel.profileState.observe(viewLifecycleOwner, {
             it.onSuccess {
                 showProfile(it)
-            }.onLoading {
-                loading.visible()
             }
             it.onError { showError(it) }
         })
@@ -200,9 +200,12 @@ class EditProfileFragment : BaseFragment() {
             it.onSuccess {
                 showProfile(it)
                 showMessage(getString(R.string.profile_saved))
-                Navigation.findNavController(updateProfileBtn).navigate(
-                    R.id.action_editProfileFragment_to_showProfileFragment
-                )
+                Handler(Looper.getMainLooper()).postDelayed({
+                    Navigation.findNavController(updateProfileBtn).navigate(
+                        R.id.action_editProfileFragment_to_showProfileFragment
+                    )
+                },1500)
+
             }
             it.onError { showError(it) }
 
@@ -215,11 +218,13 @@ class EditProfileFragment : BaseFragment() {
             it.onError { showError(it) }
         })
 
+        viewModel.loading.observe(viewLifecycleOwner, {
+            if (it) loading.visible() else loading.gone()
+        })
 
     }
 
     private fun showProfile(profile: ProfileEntity?) {
-        loading.gone()
         profile?.apply {
             avatar.loadUrl(picture)
             displayNameEdt.setText(displayName)
@@ -238,7 +243,7 @@ class EditProfileFragment : BaseFragment() {
     }
 
 
-      fun updateProfile() {
+    fun updateProfile() {
         viewModel.updateProfile(
             ProfileEntity(
                 displayName = displayNameEdt.getText(),

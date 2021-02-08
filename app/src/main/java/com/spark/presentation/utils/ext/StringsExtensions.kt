@@ -5,6 +5,8 @@ import android.util.Patterns
 import android.webkit.URLUtil
 import java.math.BigDecimal
 import java.text.NumberFormat
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -26,6 +28,19 @@ fun String.add(vararg strings: String?): String {
 
 fun String.isValidEmail(): Boolean {
     return Patterns.EMAIL_ADDRESS.matcher(this).matches()
+}
+
+fun String?.isValidDateTime(): Boolean {
+    if (this.isNullOrEmpty()) return false
+ if (!this.matches("""\d{2}\-\d{2}\-\d{4}""".toRegex())) return false
+    val df = SimpleDateFormat("dd-MM-yyyy")
+    //df.isLenient = false
+    return try {
+        df.parse(this)
+        true
+    } catch (ex: ParseException) {
+        false
+    }
 }
 
 fun String.isPasswordValid(): Boolean {

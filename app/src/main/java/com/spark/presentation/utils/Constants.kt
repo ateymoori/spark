@@ -19,6 +19,7 @@ class Constants {
 
         val HEIGHT_ERROR = "Height should be in $HEIGHT_MIN_SIZE CM - $HEIGHT_MAX_SIZE CM"
         val BIRTHDAY_NULL_ERROR = "Birthday is Mandatory"
+        val BIRTHDAY_WRONG_ERROR = "Birthday format is Wrong"
 
         val GENDER_NULL_ERROR = "Gender is Mandatory"
         val MARITAL_NULL_ERROR = "Marital-Status is Mandatory"

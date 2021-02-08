@@ -23,15 +23,27 @@ object TimeHelper {
         }
 
     fun getYear(strDate: String): Int {
-        return Integer.parseInt(strDate.replace("-", "").substring(4, 8))
+        return try {
+            Integer.parseInt(strDate.replace("-", "").substring(4, 8))
+        } catch (e: Exception) {
+            0
+        }
     }
 
     fun getMonth(strDate: String): Int {
-        return Integer.parseInt(strDate.replace("-", "").substring(2, 4)) - 1
+        return try {
+            Integer.parseInt(strDate.replace("-", "").substring(2, 4)) - 1
+        } catch (e: Exception) {
+            0
+        }
     }
 
     fun getDay(strDate: String): Int {
-        return Integer.parseInt(strDate.replace("-", "").substring(0, 2))
+        return try {
+            Integer.parseInt(strDate.replace("-", "").substring(0, 2))
+        } catch (e: Exception) {
+            0
+        }
     }
 
     private fun isNotValidDate(inDate: String): Boolean {
@@ -98,7 +110,7 @@ object TimeHelper {
         dateFormat.isLenient = false
         dateFormat.parse(strDate.trim()).let {
             if (it != null) {
-                date=it
+                date = it
             }
         }
 
