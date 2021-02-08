@@ -1,30 +1,26 @@
 package com.spark.presentation.ui.editprofile
 
-import android.view.KeyEvent
-import android.widget.EditText
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
-import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.spark.*
-import com.spark.data.utils.Resource
-import com.spark.domain.usecases.GetProfile
-import com.spark.presentation.ui.showprofile.ShowProfileFragment
-import com.spark.presentation.ui.showprofile.ShowProfileViewModel
+import com.spark.CustomAssertion.Companion.setTextInTextView
+import com.spark.FakeProfileRepository
+import com.spark.R
+import com.spark.launchFragmentInHiltContainer
+import com.spark.presentation.utils.Constants
 import com.spark.presentation.utils.components.base.EspressoIdlingResource
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import junit.framework.TestCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
-import org.hamcrest.CoreMatchers
 import org.junit.*
 import org.junit.runner.RunWith
 
@@ -34,6 +30,7 @@ import org.junit.runner.RunWith
 class EditProfileFragmentTest {
 
     val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+    val fakeProfile = FakeProfileRepository().profile
 
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
@@ -64,7 +61,7 @@ class EditProfileFragmentTest {
 
     @ExperimentalCoroutinesApi
     @Test
-    fun testTio() {
+    fun testFragmentTitleIsShowing() {
         launchFragmentInHiltContainer<EditProfileFragment>()
 
         onView(withId(R.id.pageTitle)).check(
@@ -72,5 +69,68 @@ class EditProfileFragmentTest {
                 ViewMatchers.isDisplayed()
             )
         )
+    }
+
+    @ExperimentalCoroutinesApi
+    @Test
+    fun testForm() {
+        launchFragmentInHiltContainer<EditProfileFragment>()
+
+        onView(withId(R.id.pageTitle)).check(
+            ViewAssertions.matches(
+                ViewMatchers.isDisplayed()
+            )
+        )
+
+        onView(withId(R.id.displayNameEdt))
+            .perform(setTextInTextView(fakeProfile.displayName))
+
+        onView(withId(R.id.realNameEdt))
+            .perform(setTextInTextView(fakeProfile.realName))
+
+
+        //WRONG Format to test validation
+        onView(withId(R.id.birthdayEdt))
+            .perform(setTextInTextView("112233"))
+
+        onView(withId(R.id.genderSpinner))
+            .perform(setTextInTextView(fakeProfile.gender))
+
+        onView(withId(R.id.ethnicitySpinner))
+            .perform(setTextInTextView(fakeProfile.ethnicity))
+
+        onView(withId(R.id.religionSpinner))
+            .perform(setTextInTextView(fakeProfile.religion))
+
+
+        onView(withId(R.id.heightEdt))
+            .perform(scrollTo())
+            .check(matches(ViewMatchers.isDisplayed()))
+
+        onView(withId(R.id.heightEdt))
+            .perform(setTextInTextView(fakeProfile.height.toString()))
+
+//Espresso cant test the items which are in out of visibility frame
+        onView(withId(R.id.updateProfileBtn))
+            .perform(scrollTo())
+            .check(matches(ViewMatchers.isDisplayed()))
+
+        onView(withId(R.id.maritalSpinner))
+            .perform(setTextInTextView(fakeProfile.maritalStatus))
+
+        onView(withId(R.id.occupationEdt))
+            .perform(setTextInTextView(fakeProfile.occupation))
+
+        onView(withId(R.id.aboutMeEdt))
+            .perform(setTextInTextView(fakeProfile.aboutMe))
+
+        onView(withId(R.id.locationEdt))
+            .perform(setTextInTextView(fakeProfile.locationTitle))
+
+        onView(withId(R.id.updateProfileBtn)).perform(click())
+
+
+        onView(withId(R.id.errorMsgTv)).check(matches(withText(Constants.BIRTHDAY_WRONG_ERROR)))
+
     }
 }

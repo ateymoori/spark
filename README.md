@@ -28,11 +28,11 @@
 ### Test
 I've covered the most important layers as much as possible. But still needs to write more Unit/Ui tests.
 
-<img src="https://parkup.app/website/screens/7.png" alt="Android Architecture " width=420 />
+<img src="https://parkup.app/website/screens/7.png?" alt="Android Architecture " width=420 />
 
 Also I'm using GitHub Actions as CI/CD. As I defined before, If I push the codes into any branch except master/release, All tests will run, Then If all of them passed, one APK will be built and uploads into the Github actions artifact.
 
-<img src="https://parkup.app/website/screens/8.png" alt="Android Architecture " width=480 /> <img src="https://parkup.app/website/screens/9.png" alt="Android Architecture " width=450 />
+<img src="https://parkup.app/website/screens/8.png" alt="Android Architecture " width=530 /> <img src="https://parkup.app/website/screens/9.png" alt="Android Architecture " width=450 />
 
 
 ### Technologies

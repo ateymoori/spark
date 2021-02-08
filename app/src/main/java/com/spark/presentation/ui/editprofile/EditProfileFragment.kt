@@ -204,7 +204,7 @@ class EditProfileFragment : BaseFragment() {
                     Navigation.findNavController(updateProfileBtn).navigate(
                         R.id.action_editProfileFragment_to_showProfileFragment
                     )
-                },1500)
+                }, 1500)
 
             }
             it.onError { showError(it) }
@@ -264,6 +264,16 @@ class EditProfileFragment : BaseFragment() {
         if (::newAvatarFile.isInitialized)
             viewModel.uploadAvatar(newAvatarFile)
 
+    }
+
+    override fun showMessage(msg: String?) {
+        super.showMessage(msg)
+        errorMsgTv.text = ""
+    }
+
+    override fun showError(msg: String?) {
+        super.showError(msg)
+        errorMsgTv.text = msg
     }
 
 
