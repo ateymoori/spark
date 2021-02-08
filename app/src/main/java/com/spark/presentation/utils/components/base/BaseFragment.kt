@@ -15,13 +15,13 @@ import java.util.logging.Handler
 
 open class BaseFragment : Fragment() {
 
-    fun showMessage(msg: String?) {
+    open fun showMessage(msg: String?) {
         msg?.let {
             it.toast(requireContext())
         }
     }
 
-    fun showError(msg: String?) {
+    open fun showError(msg: String?) {
         msg?.let {
             it.toast(requireContext())
         }

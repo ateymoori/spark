@@ -1,4 +1,4 @@
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -216,6 +216,13 @@
                 android:textColor="@color/textPrimaryDark"
                 app:layout_constraintEnd_toEndOf="@+id/passwordEdt"
                 app:layout_constraintStart_toStartOf="@+id/passwordEdt" />
+
+            <TextView
+                android:id="@+id/errorMsgTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:textSize="@dimen/subTitleFontSize" />
         </LinearLayout>
 
 
@@ -223,16 +230,16 @@
             android:id="@+id/loading"
             android:layout_width="match_parent"
             android:layout_height="760dp"
-            android:visibility="gone"
             android:layout_marginTop="@dimen/padding24px"
             android:background="@color/whiteOpacity"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/constraintLayout">
 
             <com.github.ybq.android.spinkit.SpinKitView
-                style="@style/SpinKitView.CubeGrid"
                 android:id="@+id/spinKit"
+                style="@style/SpinKitView.CubeGrid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:SpinKit_Color="@color/colorPrimary"
@@ -254,10 +261,10 @@
             app:tint="@color/white" />
 
         <TextView
+            android:id="@+id/pageTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/edit_profile"
-            android:id="@+id/pageTitle"
             android:textColor="@color/white"
             android:textSize="@dimen/headerFontSize"
             android:textStyle="bold"
@@ -267,4 +274,4 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+</ScrollView>
