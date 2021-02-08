@@ -18,5 +18,11 @@
     <string name="update_profile">Update Profile</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="show_profile">Show Profile</string>
+    <string name="last_update">Last Update :  </string>
+    <string name="spark_needs_permission">Spark needs the permission to upload your Avatar.Please allocate storage permission in Setting/Apps/Spark/Permissions</string>
+    <string name="profile_saved">Profile Saved</string>
+    <string name="avatar_uploaded">Avatar Uploaded</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
 
 </resources>

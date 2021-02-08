@@ -35,7 +35,7 @@ open class ProfileData @JvmOverloads constructor(
     @Expose
     @SerializedName("longitude") val longitude: Float? = null,
     @Expose
-    @SerializedName("updated_at")
+    @SerializedName("update_time")
     val updatedAt: String? = null,
     @Expose
     @SerializedName("picture_upload")

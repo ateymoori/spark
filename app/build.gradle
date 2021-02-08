@@ -39,6 +39,7 @@ android {
     }
     testOptions {
         unitTests.returnDefaultValues = true
+        animationsDisabled = true
     }
     packagingOptions {
         exclude 'META-INF/AL2.0'
@@ -58,38 +59,19 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-//    testImplementation 'junit:junit:4.13.1'
 
-    // Espresso
-//    def espresso_version = "3.3.0"
-//    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
-//    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_version"
-//    androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso_version"
-//    androidTestImplementation "androidx.test.espresso:espresso-accessibility:$espresso_version"
-//    androidTestImplementation "androidx.test.espresso:espresso-web:$espresso_version"
-//    androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:$espresso_version"
-//    androidTestImplementation "androidx.test.espresso:espresso-idling-resource:$espresso_version"
+    def test_version = '1.3.0'
+    androidTestImplementation "androidx.test:rules:$test_version"
 
 
-// AndroidJUnitRunner and JUnit Rules
-//    def test_version = '1.3.0'
-//    androidTestImplementation "androidx.test:runner:$test_version"
-//    androidTestImplementation "androidx.test:rules:$test_version"
-//    androidTestImplementation "androidx.test:core-ktx:$test_version"
-//    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-//    androidTestImplementation 'androidx.test.ext:truth:1.3.0'
-//    androidTestImplementation "com.google.truth:truth:1.1.2"
-//    androidTestImplementation "androidx.test:core:$test_version"// Assertions
     implementation 'org.mockito:mockito-core:2.23.0'
     androidTestImplementation 'androidx.annotation:annotation:1.1.0'
     testImplementation "io.mockk:mockk:1.9.3.kotlin12"
     androidTestImplementation "io.mockk:mockk-android:1.9.3.kotlin12"
-//    androidTestImplementation 'org.objenesis:objenesis:3.0.1'
-
     testImplementation 'androidx.arch.core:core-testing:2.1.0'
     androidTestImplementation 'androidx.arch.core:core-testing:2.1.0'
+
     // Fragment testing
-//    debugImplementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.21"
     debugImplementation("androidx.fragment:fragment-testing:1.2.5") {
         exclude group: "androidx.test", module: "core"
     }
@@ -116,7 +98,6 @@ dependencies {
 
     testImplementation "com.squareup.okhttp3:mockwebserver:5.0.0-alpha.2"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
-    androidTestImplementation 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
 
     //material design
     implementation 'com.google.android.material:material:1.2.1'
@@ -139,13 +120,6 @@ dependencies {
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
-
-//    //Hilt for di
-//    def hilt_version = "2.28-alpha"
-//    implementation "com.google.dagger:hilt-android:$hilt_version"
-//    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
-////    androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
-
     // Hilt ViewModel extension
     def hilt_jetpack_version = "1.0.0-alpha01"
 //    //noinspection GradleDependency
@@ -158,18 +132,19 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
 
-    api "com.makeramen:roundedimageview:2.3.0"
+    //RoundImageView
+    implementation "com.makeramen:roundedimageview:2.3.0"
+
+    //Loading
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 
-
-
-
-    testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation "com.google.dagger:hilt-android:+"
-    kapt "com.google.dagger:hilt-android-compiler:+"
     androidTestImplementation 'com.google.dagger:hilt-android-testing:2.28-alpha'
-    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.28-alpha'
-
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:3.3.0"
+    testImplementation 'junit:junit:4.13.1'
+    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.31.2-alpha'
+    implementation 'androidx.test.espresso:espresso-idling-resource:3.3.0'
+    implementation "com.google.dagger:hilt-android:2.31.2-alpha"
+    kapt "com.google.dagger:hilt-android-compiler:2.31.2-alpha"
 }

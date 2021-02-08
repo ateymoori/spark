@@ -107,7 +107,6 @@ class ProfileRepositoryImplTest {
                 }.onNetworkError {
                     assert(false)
                 }.onError {
-                    println(it)
                     assert(true)
                 }
         }

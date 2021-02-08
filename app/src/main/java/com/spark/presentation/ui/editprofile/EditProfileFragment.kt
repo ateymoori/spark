@@ -3,6 +3,8 @@ package com.spark.presentation.ui.editprofile
 import android.Manifest
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +14,11 @@ import com.spark.R
 import com.spark.data.utils.*
 import com.spark.domain.models.SingleValueEntity
 import com.spark.presentation.utils.components.base.BaseFragment
+import com.spark.presentation.utils.components.base.EspressoIdlingResource
+import com.spark.presentation.utils.components.base.PERMISSION_RESULT
 import com.spark.presentation.utils.components.base.SingleValueAdapter
 import com.spark.presentation.utils.components.bottomSheetList.base.IBaseItemListener
+import com.spark.presentation.utils.ext.add
 import com.spark.presentation.utils.ext.gone
 import com.spark.presentation.utils.ext.visible
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,8 +48,10 @@ class EditProfileFragment : BaseFragment() {
             .inflate(R.layout.edit_profile_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        EspressoIdlingResource.increment()
 
         initLiveDataListeners()
         initAdapters()
@@ -54,7 +61,6 @@ class EditProfileFragment : BaseFragment() {
         updateProfileBtn.setOnClickListener {
             updateProfile()
         }
-
 
         viewModel.ethnicitiesState.observe(viewLifecycleOwner, {
             it.onSuccess { data ->
@@ -132,12 +138,13 @@ class EditProfileFragment : BaseFragment() {
 
         avatarContainer.setOnClickListener {
             checkPermission(
-                mutableListOf(
-                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
-                )
-            ) {
-                openGallery()
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) { result ->
+                when (result) {
+                    PERMISSION_RESULT.GRANTED -> openGallery()
+                    PERMISSION_RESULT.DENIED -> showError(getString(R.string.spark_needs_permission))
+                    PERMISSION_RESULT.RATIONAL -> showError(getString(R.string.spark_needs_permission))
+                }
             }
         }
 
@@ -154,7 +161,7 @@ class EditProfileFragment : BaseFragment() {
             if (uri != null && activity != null) {
                 newAvatarFile = File(FilePickUtils.getPath(requireActivity(), uri))
                 avatar.loadFile(newAvatarFile)
-                //compressAndUpload(file)
+                //compress(file)
             }
         }
     }
@@ -171,8 +178,8 @@ class EditProfileFragment : BaseFragment() {
         adapterGenders =
             SingleValueAdapter(
                 mutableListOf(
-                    SingleValueEntity("Female"),
-                    SingleValueEntity("Male")
+                    SingleValueEntity(getString(R.string.female)),
+                    SingleValueEntity(getString(R.string.male))
                 ), object : IBaseItemListener<SingleValueEntity> {
                     override fun onClick(position: Int?, model: SingleValueEntity?, viewId: View?) {
                         genderSpinner.setText(model?.title)
@@ -186,31 +193,38 @@ class EditProfileFragment : BaseFragment() {
         viewModel.profileState.observe(viewLifecycleOwner, {
             it.onSuccess {
                 showProfile(it)
-            }.onLoading {
-                loading.visible()
             }
             it.onError { showError(it) }
         })
         viewModel.updateProfileState.observe(viewLifecycleOwner, {
             it.onSuccess {
-                showMessage("Profile Saved")
-                Navigation.findNavController(updateProfileBtn).navigate(
-                    R.id.action_editProfileFragment_to_showProfileFragment
-                )
+                showProfile(it)
+                showMessage(getString(R.string.profile_saved))
+                Handler(Looper.getMainLooper()).postDelayed({
+                    Navigation.findNavController(updateProfileBtn).navigate(
+                        R.id.action_editProfileFragment_to_showProfileFragment
+                    )
+                },1500)
+
             }
             it.onError { showError(it) }
 
         })
         viewModel.uploadAvatarState.observe(viewLifecycleOwner, {
-            it.onSuccess { showMessage("Avatar Uploaded") }
+            it.onSuccess {
+                showProfile(it)
+                showMessage(getString(R.string.avatar_uploaded))
+            }
             it.onError { showError(it) }
         })
 
+        viewModel.loading.observe(viewLifecycleOwner, {
+            if (it) loading.visible() else loading.gone()
+        })
 
     }
 
     private fun showProfile(profile: ProfileEntity?) {
-        loading.gone()
         profile?.apply {
             avatar.loadUrl(picture)
             displayNameEdt.setText(displayName)
@@ -225,10 +239,11 @@ class EditProfileFragment : BaseFragment() {
             aboutMeEdt.setText(aboutMe)
             locationEdt.setText(locationTitle)
         }
+        EspressoIdlingResource.decrement()
     }
 
 
-    private fun updateProfile() {
+    fun updateProfile() {
         viewModel.updateProfile(
             ProfileEntity(
                 displayName = displayNameEdt.getText(),
@@ -241,10 +256,7 @@ class EditProfileFragment : BaseFragment() {
                 maritalStatus = maritalSpinner.getText(),
                 occupation = occupationEdt.getText(),
                 aboutMe = aboutMeEdt.getText(),
-                locationTitle = locationEdt.getText(),
-                latitude = null,
-                longitude = null,
-                updatedAt = null
+                locationTitle = locationEdt.getText()
             )
         )
 
@@ -252,11 +264,6 @@ class EditProfileFragment : BaseFragment() {
         if (::newAvatarFile.isInitialized)
             viewModel.uploadAvatar(newAvatarFile)
 
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.onViewResumed()
     }
 
 

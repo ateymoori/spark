@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.spark.R
 import java.io.File
 import kotlin.math.abs
 import kotlin.math.log10
@@ -76,17 +77,19 @@ fun ImageView.setImageDrawable(context: Context?, drawable: Int) {
 }
 
 
-fun ImageView.loadFile( file: File) {
+fun ImageView.loadFile(file: File) {
     Glide.with(this.context)
         .load(file)
+        .placeholder(R.drawable.avatar_placeholder)
         .centerCrop()
         .into(this)
 }
 
-fun ImageView.loadUrl( url: String?) {
+fun ImageView.loadUrl(url: String?) {
     Glide.with(this.context)
         .load(url)
         .centerCrop()
+        .placeholder(R.drawable.avatar_placeholder)
         .into(this)
 }
 

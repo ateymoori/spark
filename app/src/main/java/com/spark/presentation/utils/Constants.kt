@@ -19,6 +19,7 @@ class Constants {
 
         val HEIGHT_ERROR = "Height should be in $HEIGHT_MIN_SIZE CM - $HEIGHT_MAX_SIZE CM"
         val BIRTHDAY_NULL_ERROR = "Birthday is Mandatory"
+        val BIRTHDAY_WRONG_ERROR = "Birthday format is Wrong"
 
         val GENDER_NULL_ERROR = "Gender is Mandatory"
         val MARITAL_NULL_ERROR = "Marital-Status is Mandatory"
@@ -27,7 +28,7 @@ class Constants {
         val AVATAR_NULL = "Avatar is null"
 
         val MIN_AVATAR_SIZE_KB = 50
-        val MAX_AVATAR_SIZE_KB = 1024
+        val MAX_AVATAR_SIZE_KB = 2048
         val AVATAR_SIZE_ERROR = "File size should be between ${MIN_AVATAR_SIZE_KB}KB to ${MAX_AVATAR_SIZE_KB}KB"
     }
 }

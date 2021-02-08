@@ -1,7 +1,5 @@
 package com.spark.presentation.ui.editprofile
 
-import android.graphics.BitmapFactory
-import android.os.FileUtils
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.spark.UnitTestUtils
 import com.spark.data.utils.*
@@ -21,10 +19,8 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
-import org.mockito.Mockito.mock
 import org.mockito.MockitoAnnotations
 import java.io.File
-import java.io.FileOutputStream
 
 
 class EditProfileViewModelTest {
@@ -273,6 +269,30 @@ class EditProfileViewModelTest {
 
     @ExperimentalCoroutinesApi
     @Test
+    fun `SaveProfile with Wrong Birthday (Repo,UseCase,VM), return Error`() {
+        runBlockingTest {
+
+            Mockito.`when`(profileRepository.updateProfile(UnitTestUtils.fakeProfile))
+                .thenReturn(fakeProfile)
+
+            viewModel.updateProfile(UnitTestUtils.fakeProfile.copy(birthday = "11-13-335"))
+
+            val result = viewModel.updateProfileState.getOrAwaitValue()
+            result.onLoading {
+                assertTrue(false)
+            }
+            result.onSuccess {
+                assertTrue(false)
+            }
+            result.onError {
+                assertEquals(it, Constants.BIRTHDAY_WRONG_ERROR)
+            }
+
+        }
+    }
+
+    @ExperimentalCoroutinesApi
+    @Test
     fun `SaveProfile with Null Marital (Repo,UseCase,VM), return Error`() {
         runBlockingTest {
 
@@ -328,7 +348,7 @@ class EditProfileViewModelTest {
 
             Mockito.`when`(profileRepository.getProfile()).thenReturn(fakeProfile)
 
-            viewModel.onViewResumed()
+            viewModel.getData()
 
             val result = viewModel.profileState.getOrAwaitValue()
             result.onLoading {

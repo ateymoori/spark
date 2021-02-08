@@ -36,6 +36,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center|top"
+            android:paddingTop="@dimen/padding12px"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +69,7 @@
                         android:layout_width="84dp"
                         android:layout_height="84dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/background"
+                        android:src="@drawable/avatar_placeholder"
                         app:riv_border_color="@color/gray"
                         app:riv_border_width="0.5dp"
                         app:riv_oval="true" />
@@ -76,6 +77,17 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_profile"
+                android:id="@+id/lastUpdate"
+                android:textColor="@color/textHint"
+                android:textSize="@dimen/subTitleFontSize"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/detailsLv"
@@ -93,9 +105,9 @@
             android:id="@+id/loading"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/padding32px"
-            android:background="@color/whiteOpacity"
             android:visibility="gone"
+            android:layout_marginTop="@dimen/padding18px"
+            android:background="@color/whiteOpacity"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -119,6 +131,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/show_profile"
+        android:id="@+id/pageTitle"
         android:textColor="@color/white"
         android:textSize="@dimen/headerFontSize"
         android:textStyle="bold"
@@ -127,11 +140,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/editBtn"
-        android:layout_width="@dimen/padding32px"
-        android:layout_height="@dimen/padding32px"
-        android:layout_margin="@dimen/padding12px"
+        android:layout_width="@dimen/padding38px"
+        android:padding="@dimen/padding4px"
+        android:scaleType="fitXY"
+        android:layout_height="@dimen/padding38px"
+        android:background="@color/transparent"
+        android:layout_margin="@dimen/padding8px"
         android:src="@drawable/ic_contract"
         app:layout_constraintBottom_toTopOf="@id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"

@@ -11,6 +11,7 @@ import java.util.concurrent.TimeoutException
 import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.core.util.Preconditions
 import androidx.fragment.app.Fragment
 import androidx.test.core.app.ActivityScenario
@@ -18,10 +19,16 @@ import androidx.test.core.app.ApplicationProvider
 
 import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.testing.FragmentScenario
+import androidx.recyclerview.widget.RecyclerView
+import androidx.test.espresso.NoMatchingViewException
+import androidx.test.espresso.ViewAssertion
+import androidx.test.espresso.matcher.ViewMatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.hamcrest.CoreMatchers
 
 class FileReader(path: String) {
     val content: String
+
     init {
         val reader = InputStreamReader(this.javaClass.classLoader?.getResourceAsStream(path))
         content = reader.readText()
@@ -54,10 +61,8 @@ fun <T> LiveData<T>.getOrAwaitValueAndroidTest(
 }
 
 
-
-
 @ExperimentalCoroutinesApi
-inline fun  <reified T: Fragment> launchFragmentInHiltContainer(
+inline fun <reified T : Fragment> launchFragmentInHiltContainer(
     fragmentArgs: Bundle? = null,
     themeResId: Int = R.style.FragmentScenarioEmptyFragmentActivityTheme,
     fragmentFactory: FragmentFactory? = null,
@@ -70,7 +75,7 @@ inline fun  <reified T: Fragment> launchFragmentInHiltContainer(
         )
     ).putExtra(FragmentScenario.EmptyFragmentActivity.THEME_EXTRAS_BUNDLE_KEY, themeResId)
 
-    ActivityScenario.launch<HiltTestActivity>(mainActivityIntent).onActivity { activity->
+    ActivityScenario.launch<HiltTestActivity>(mainActivityIntent).onActivity { activity ->
         fragmentFactory?.let {
             activity.supportFragmentManager.fragmentFactory = it
         }
@@ -82,10 +87,10 @@ inline fun  <reified T: Fragment> launchFragmentInHiltContainer(
 
         fragment.arguments = fragmentArgs
 
-        activity.supportFragmentManager.beginTransaction().add(android.R.id.content, fragment, "").commitNow()
+        activity.supportFragmentManager.beginTransaction().add(android.R.id.content, fragment, "")
+            .commitNow()
 
         (fragment as T).action()
     }
 }
-
 
