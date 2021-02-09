@@ -219,6 +219,7 @@ class EditProfileFragment : BaseFragment() {
         })
 
         viewModel.loading.observe(viewLifecycleOwner, {
+            updateProfileBtn.isEnabled = !it
             if (it) loading.visible() else loading.gone()
         })
 
