@@ -3,6 +3,7 @@ package com.spark.domain.usecases
 import com.spark.data.utils.Resource
 import com.spark.domain.models.ProfileEntity
 import com.spark.domain.repositories.ProfileRepository
+import com.spark.presentation.utils.Constants.Companion.AGE_ERROR
 import com.spark.presentation.utils.Constants.Companion.BIRTHDAY_NULL_ERROR
 import com.spark.presentation.utils.Constants.Companion.BIRTHDAY_WRONG_ERROR
 import com.spark.presentation.utils.Constants.Companion.DATA_NULL_ERROR
@@ -15,10 +16,13 @@ import com.spark.presentation.utils.Constants.Companion.HEIGHT_MAX_SIZE
 import com.spark.presentation.utils.Constants.Companion.HEIGHT_MIN_SIZE
 import com.spark.presentation.utils.Constants.Companion.LOCATION_NULL_ERROR
 import com.spark.presentation.utils.Constants.Companion.MARITAL_NULL_ERROR
+import com.spark.presentation.utils.Constants.Companion.MAX_USER_AGE
+import com.spark.presentation.utils.Constants.Companion.MIN_USER_AGE
 import com.spark.presentation.utils.Constants.Companion.REALNAME_MAX_SIZE
 import com.spark.presentation.utils.Constants.Companion.REALNAME_MIN_SIZE
 import com.spark.presentation.utils.Constants.Companion.REAL_NAME_ERROR
 import com.spark.presentation.utils.components.base.Either
+import com.spark.presentation.utils.components.bottomSheetList.base.TimeHelper
 import com.spark.presentation.utils.ext.isValidDateTime
 
 import javax.inject.Inject
@@ -44,9 +48,6 @@ class UpdateProfile @Inject constructor(
         if (data.realName?.length !in REALNAME_MIN_SIZE..REALNAME_MAX_SIZE)
             return Either.Left(Exception(REAL_NAME_ERROR))
 
-        if (data.birthday.isNullOrEmpty())
-            return Either.Left(Exception(BIRTHDAY_NULL_ERROR))
-
         if (data.height !in HEIGHT_MIN_SIZE..HEIGHT_MAX_SIZE)
             return Either.Left(Exception(HEIGHT_ERROR))
 
@@ -59,8 +60,14 @@ class UpdateProfile @Inject constructor(
         if (data.locationTitle.isNullOrEmpty())
             return Either.Left(Exception(LOCATION_NULL_ERROR))
 
+        if (data.birthday.isNullOrEmpty())
+            return Either.Left(Exception(BIRTHDAY_NULL_ERROR))
+
         if (!data.birthday.isValidDateTime())
             return Either.Left(Exception(BIRTHDAY_WRONG_ERROR))
+
+        if (!TimeHelper.ageValidation(data.birthday.toString() , MIN_USER_AGE , MAX_USER_AGE))
+            return Either.Left(Exception(AGE_ERROR))
 
         return Either.Right(data)
     }

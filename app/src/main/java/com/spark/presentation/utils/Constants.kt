@@ -12,6 +12,9 @@ class Constants {
         val HEIGHT_MIN_SIZE = 90
         val HEIGHT_MAX_SIZE = 230
 
+        val MIN_USER_AGE = 18
+        val MAX_USER_AGE = 120
+
         val DATA_NULL_ERROR = "Data is null"
         val DISPLAY_NAME_ERROR =
             "Display-Name size should be in $DISPLAYNAME_MIN_SIZE-$DISPLAYNAME_MAX_SIZE"
@@ -20,6 +23,7 @@ class Constants {
         val HEIGHT_ERROR = "Height should be in $HEIGHT_MIN_SIZE CM - $HEIGHT_MAX_SIZE CM"
         val BIRTHDAY_NULL_ERROR = "Birthday is Mandatory"
         val BIRTHDAY_WRONG_ERROR = "Birthday format is Wrong"
+        val AGE_ERROR = "Your age should be between $MIN_USER_AGE to $MAX_USER_AGE years old"
 
         val GENDER_NULL_ERROR = "Gender is Mandatory"
         val MARITAL_NULL_ERROR = "Marital-Status is Mandatory"
