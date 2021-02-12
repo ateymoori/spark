@@ -1,5 +1,5 @@
 
-# Spark, a simple Android app to explain the clean architecture
+# Spark, a simple Android app to explain the clean architecture + Automated Test
 
 <img src="https://parkup.app/website/screens/1.jpg" alt="Android Architecture " width=200 />&nbsp;
 <img src="https://parkup.app/website/screens/2.jpg" alt="Android Architecture " width=200 />&nbsp;
