@@ -3,10 +3,7 @@ package com.spark.presentation.ui.editprofile
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.spark.UnitTestUtils
 import com.spark.data.utils.*
-import com.spark.domain.repositories.EthnicityRepository
-import com.spark.domain.repositories.MaritalListRepository
-import com.spark.domain.repositories.ProfileRepository
-import com.spark.domain.repositories.ReligionsRepository
+import com.spark.domain.repositories.*
 import com.spark.domain.usecases.*
 import com.spark.getOrAwaitValue
 import com.spark.presentation.utils.Constants
@@ -36,6 +33,9 @@ class EditProfileViewModelTest {
     private lateinit var ethnicityRepository: EthnicityRepository
 
     @Mock
+    private lateinit var locationsRepository: LocationRepository
+
+    @Mock
     private lateinit var religionsRepository: ReligionsRepository
 
     @Mock
@@ -52,6 +52,7 @@ class EditProfileViewModelTest {
     lateinit var getMaritalList: GetMaritalList
     lateinit var updateProfile: UpdateProfile
     lateinit var uploadAvatar: UploadAvatar
+    lateinit var getLocations: GetLocations
 
     private val fakeProfile = Resource.Success(UnitTestUtils.fakeProfile)
 
@@ -64,6 +65,7 @@ class EditProfileViewModelTest {
         getMaritalList = GetMaritalList(maritalListRepository)
         updateProfile = UpdateProfile(profileRepository)
         uploadAvatar = UploadAvatar(profileRepository)
+        getLocations = GetLocations(locationsRepository)
 
         viewModel = EditProfileViewModel(
             getEthnicities = getEthnicities,
@@ -71,7 +73,8 @@ class EditProfileViewModelTest {
             getMaritalList = getMaritalList,
             getProfile = getProfile,
             updateProfile = updateProfile,
-            uploadAvatar = uploadAvatar
+            uploadAvatar = uploadAvatar,
+            getLocations = getLocations
         )
     }
 

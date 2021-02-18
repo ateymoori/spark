@@ -124,7 +124,7 @@ class EditProfileFragmentTest {
         onView(withId(R.id.aboutMeEdt))
             .perform(setTextInTextView(fakeProfile.aboutMe))
 
-        onView(withId(R.id.locationEdt))
+        onView(withId(R.id.locationSpinner))
             .perform(setTextInTextView(fakeProfile.locationTitle))
 
         onView(withId(R.id.updateProfileBtn)).perform(click())

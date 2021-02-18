@@ -1,5 +1,6 @@
 package com.spark.presentation.utils
 
+
 class Constants {
 
     companion object {
@@ -33,6 +34,8 @@ class Constants {
 
         val MIN_AVATAR_SIZE_KB = 50
         val MAX_AVATAR_SIZE_KB = 2048
-        val AVATAR_SIZE_ERROR = "File size should be between ${MIN_AVATAR_SIZE_KB}KB to ${MAX_AVATAR_SIZE_KB}KB"
+        val AVATAR_SIZE_ERROR =
+            "File size should be between ${MIN_AVATAR_SIZE_KB}KB to ${MAX_AVATAR_SIZE_KB}KB"
     }
 }
+

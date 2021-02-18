@@ -10,7 +10,6 @@ class GetEthnicities @Inject constructor(
     private val ethnicityRepo: EthnicityRepository
 ) : UseCase<Resource<List<SingleValueEntity>> , Nothing >() {
 
-
     override suspend fun invoke(data: Nothing?): Resource<List<SingleValueEntity>> {
         return ethnicityRepo.getEthnicities()
     }

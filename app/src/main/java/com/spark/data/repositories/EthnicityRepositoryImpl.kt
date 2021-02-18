@@ -11,7 +11,6 @@ class EthnicityRepositoryImpl @Inject constructor(
     private val restApi: RestApi
 ) : EthnicityRepository, BaseDataSource() {
 
-
     override suspend fun getEthnicities(): Resource<List<SingleValueEntity>> {
        getResult { restApi.getEthnicity() }.onSuccess {
             return Resource.Success(it?.map { it.mapToSingleValue() })
