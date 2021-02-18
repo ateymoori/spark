@@ -11,7 +11,6 @@ import org.mockito.MockitoAnnotations
 import org.junit.Assert.*
 import org.junit.Test
 
-
 class GsonUtilsTest {
 
     lateinit var gson: Gson

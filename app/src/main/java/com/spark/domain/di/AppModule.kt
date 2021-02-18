@@ -1,14 +1,9 @@
 package com.spark.domain.di
 
 import com.spark.data.api.RestApi
-import com.spark.data.repositories.EthnicityRepositoryImpl
-import com.spark.data.repositories.MaritalListRepositoryImpl
-import com.spark.data.repositories.ProfileRepositoryImpl
-import com.spark.data.repositories.ReligionsRepositoryImpl
-import com.spark.domain.repositories.EthnicityRepository
-import com.spark.domain.repositories.MaritalListRepository
-import com.spark.domain.repositories.ProfileRepository
-import com.spark.domain.repositories.ReligionsRepository
+import com.spark.data.repositories.*
+import com.spark.domain.repositories.*
+import com.spark.presentation.utils.components.base.AssetsUtils
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -42,6 +37,12 @@ object AppModule {
     @Singleton
     fun provideProfileRepository(restApi: RestApi): ProfileRepository {
         return ProfileRepositoryImpl(restApi)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLocationRepository(assetsUtils: AssetsUtils ): LocationRepository {
+        return LocationRepositoryImpl(assetsUtil = assetsUtils)
     }
 
 }

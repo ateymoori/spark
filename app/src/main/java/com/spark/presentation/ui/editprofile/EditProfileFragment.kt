@@ -18,7 +18,6 @@ import com.spark.presentation.utils.components.base.EspressoIdlingResource
 import com.spark.presentation.utils.components.base.PERMISSION_RESULT
 import com.spark.presentation.utils.components.base.SingleValueAdapter
 import com.spark.presentation.utils.components.bottomSheetList.base.IBaseItemListener
-import com.spark.presentation.utils.ext.add
 import com.spark.presentation.utils.ext.gone
 import com.spark.presentation.utils.ext.visible
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,6 +37,7 @@ class EditProfileFragment : BaseFragment() {
     private lateinit var adapterGenders: SingleValueAdapter
     private lateinit var adapterReligions: SingleValueAdapter
     private lateinit var adapterMarital: SingleValueAdapter
+    private lateinit var adapterLocations: SingleValueAdapter
     private val GALLERY_CODE = 1000
 
     override fun onCreateView(
@@ -127,6 +127,31 @@ class EditProfileFragment : BaseFragment() {
                             }
                         })
                 maritalSpinner.setSpinnerAdapter(adapterMarital)
+
+            }.onError {
+                showError(it)
+            }.onNetworkError {
+                showError(it)
+            }
+
+        })
+
+        viewModel.getLocationsState.observe(viewLifecycleOwner, {
+            it.onSuccess { data ->
+                adapterLocations =
+                    SingleValueAdapter(
+                        data?.toMutableList(),
+                        object : IBaseItemListener<SingleValueEntity> {
+                            override fun onClick(
+                                position: Int?,
+                                model: SingleValueEntity?,
+                                viewId: View?
+                            ) {
+                                locationSpinner.setText(model?.title)
+                                locationSpinner.dismiss()
+                            }
+                        })
+                locationSpinner.setSpinnerAdapter(adapterLocations)
 
             }.onError {
                 showError(it)
@@ -238,7 +263,7 @@ class EditProfileFragment : BaseFragment() {
             maritalSpinner.setText(maritalStatus)
             occupationEdt.setText(occupation)
             aboutMeEdt.setText(aboutMe)
-            locationEdt.setText(locationTitle)
+            locationSpinner.setText(locationTitle)
         }
         EspressoIdlingResource.decrement()
     }
@@ -257,7 +282,7 @@ class EditProfileFragment : BaseFragment() {
                 maritalStatus = maritalSpinner.getText(),
                 occupation = occupationEdt.getText(),
                 aboutMe = aboutMeEdt.getText(),
-                locationTitle = locationEdt.getText()
+                locationTitle = locationSpinner.getText()
             )
         )
 

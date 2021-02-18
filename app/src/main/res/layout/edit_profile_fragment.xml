@@ -196,12 +196,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/addressEdt" />
 
             <com.spark.presentation.utils.components.edittext.PEditText
-                android:id="@+id/locationEdt"
+                android:id="@+id/locationSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_map_pin_primary_24"
                 android:hint="@string/location"
-                android:imeOptions="actionGo"
+                app:kind="spinner"
                 app:layout_constraintEnd_toEndOf="@+id/emailEdt"
                 app:layout_constraintStart_toStartOf="@+id/emailEdt"
                 app:layout_constraintTop_toBottomOf="@+id/addressEdt" />

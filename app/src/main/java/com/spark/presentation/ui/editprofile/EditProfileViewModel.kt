@@ -20,7 +20,8 @@ class EditProfileViewModel @ViewModelInject constructor(
     private val getMaritalList: GetMaritalList,
     private val getProfile: GetProfile,
     private val updateProfile: UpdateProfile,
-    private val uploadAvatar: UploadAvatar
+    private val uploadAvatar: UploadAvatar,
+    private val getLocations:GetLocations
 ) : BaseViewModel(), LifecycleObserver {
 
     val ethnicitiesState = MutableLiveData<Resource<List<SingleValueEntity>>>()
@@ -29,6 +30,7 @@ class EditProfileViewModel @ViewModelInject constructor(
     val profileState = MutableLiveData<Resource<ProfileEntity>>()
     val updateProfileState = SingleLiveEvent<Resource<ProfileEntity>>()
     val uploadAvatarState = SingleLiveEvent<Resource<ProfileEntity>>()
+    val getLocationsState = SingleLiveEvent<Resource<List<SingleValueEntity>>>()
 
     val loading = SingleLiveEvent<Boolean>()
 
@@ -41,8 +43,14 @@ class EditProfileViewModel @ViewModelInject constructor(
         getReligions()
         getMaritalList()
         getProfile()
+        getLocations()
     }
 
+    fun getLocations(){
+        viewModelScope.launch {
+            getLocationsState.postValue(getLocations.invoke())
+        }
+    }
     fun getEnthnics() {
         viewModelScope.launch {
             ethnicitiesState.postValue(getEthnicities.invoke())
