@@ -1,9 +1,6 @@
 package com.spark.data.api
 
-import com.spark.data.models.EthnicityData
-import com.spark.data.models.MaritalData
-import com.spark.data.models.ProfileData
-import com.spark.data.models.ReligionData
+import com.spark.data.models.*
 import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.*
@@ -25,6 +22,9 @@ interface RestApi {
 
     @GET("$API_VERSION/profile")
     suspend fun getProfile(): Response<ProfileData>
+
+    @GET("https://run.mocky.io/v3/1d80db20-a0f9-4caa-adba-078edc67a5a9")
+    suspend fun getNewProfile(): Response<NewProfileData>
 
     @POST("$API_VERSION/profile")
     suspend fun updateProfile(

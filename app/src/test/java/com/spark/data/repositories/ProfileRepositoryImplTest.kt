@@ -13,7 +13,6 @@ import com.spark.data.utils.GsonUtils.toObjectByGson
 import com.spark.data.utils.GsonUtils.toStringByGson
 import com.spark.domain.models.ProfileEntity
 import com.spark.domain.models.mapToData
-import com.spark.getOrAwaitValue
 import com.spark.presentation.utils.Constants
 import com.spark.presentation.utils.components.base.FileReader
 import kotlinx.coroutines.ExperimentalCoroutinesApi
