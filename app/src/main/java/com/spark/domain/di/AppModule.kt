@@ -4,6 +4,7 @@ import com.spark.data.api.RestApi
 import com.spark.data.repositories.*
 import com.spark.domain.repositories.*
 import com.spark.presentation.utils.components.base.AssetsUtils
+import com.spark.presentation.utils.components.base.SharedPrefUtils
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,8 +36,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideProfileRepository(restApi: RestApi): ProfileRepository {
-        return ProfileRepositoryImpl(restApi)
+    fun provideProfileRepository(restApi: RestApi , shartedPrefUtils : SharedPrefUtils): ProfileRepository {
+        return ProfileRepositoryImpl(restApi,shartedPrefUtils )
     }
 
     @Provides

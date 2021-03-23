@@ -269,6 +269,12 @@ class PEditText @JvmOverloads constructor(
                 editText.addTextChangedListener(DateSeparator(editText))
                 imageViewEnd.setImageResource(R.drawable.ic_date)
                 imageViewEnd.setOnClickListener { datePickerDialog.show() }
+
+                editText.setOnClickListener { datePickerDialog.show() }
+                editText.isFocusable = false
+                editText.isClickable = true
+             //   editText.isEnabled = false
+
             }
             KIND_SPINNER // Spinner
             -> {

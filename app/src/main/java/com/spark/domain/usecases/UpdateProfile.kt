@@ -31,11 +31,19 @@ class UpdateProfile @Inject constructor(
     private val profileRepo: ProfileRepository
 ) : UseCase<Resource<ProfileEntity>, ProfileEntity>() {
 
+
     override suspend fun invoke(data: ProfileEntity?): Resource<ProfileEntity> {
         return when (val result = validateForm(data)) {
             is Either.Left -> Resource.Failure.Generic(result.a.message)
-            is Either.Right -> profileRepo.updateProfile(result.b)
+            is Either.Right -> {
+                profileRepo.updateProfile(result.b)
+            }
         }
+    }
+
+
+    fun checkGenderIsEditable():Boolean {
+        return !profileRepo.genderIsSelected()
     }
 
     fun validateForm(data: ProfileEntity?): Either<Exception, ProfileEntity> {
@@ -66,7 +74,7 @@ class UpdateProfile @Inject constructor(
         if (!data.birthday.isValidDateTime())
             return Either.Left(Exception(BIRTHDAY_WRONG_ERROR))
 
-        if (!TimeHelper.ageValidation(data.birthday.toString() , MIN_USER_AGE , MAX_USER_AGE))
+        if (!TimeHelper.ageValidation(data.birthday.toString(), MIN_USER_AGE, MAX_USER_AGE))
             return Either.Left(Exception(AGE_ERROR))
 
         return Either.Right(data)

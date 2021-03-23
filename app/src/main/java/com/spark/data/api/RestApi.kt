@@ -23,9 +23,6 @@ interface RestApi {
     @GET("$API_VERSION/profile")
     suspend fun getProfile(): Response<ProfileData>
 
-    @GET("https://run.mocky.io/v3/1d80db20-a0f9-4caa-adba-078edc67a5a9")
-    suspend fun getNewProfile(): Response<NewProfileData>
-
     @POST("$API_VERSION/profile")
     suspend fun updateProfile(
         @Body profile: ProfileData
