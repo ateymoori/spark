@@ -31,6 +31,8 @@ infix fun Double.round(decimals: Int): Double {
 }
 
 
+
+
 fun String.toast(ctx: Context?): String {
     Toast.makeText(ctx, this, Toast.LENGTH_LONG).show()
     return this
@@ -47,6 +49,14 @@ fun <T : androidx.recyclerview.widget.RecyclerView.ViewHolder> T.listen(event: (
 fun Long.length() = when (this) {
     0.toLong() -> 1
     else -> log10(abs(toDouble())).toInt() + 1
+}
+
+fun String.getAge():Int{
+    return try{
+        this.toInt()
+    }catch (e:Exception) {
+        0
+    }
 }
 
 

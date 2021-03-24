@@ -24,5 +24,6 @@
     <string name="avatar_uploaded">Avatar Uploaded</string>
     <string name="female">Female</string>
     <string name="male">Male</string>
+    <string name="gender_cannot_set_twice">Gender (cannot change more than one time)</string>
 
 </resources>

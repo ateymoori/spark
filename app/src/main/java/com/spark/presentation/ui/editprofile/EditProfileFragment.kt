@@ -40,6 +40,7 @@ class EditProfileFragment : BaseFragment() {
     private lateinit var adapterLocations: SingleValueAdapter
     private val GALLERY_CODE = 1000
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,7 +57,7 @@ class EditProfileFragment : BaseFragment() {
         initLiveDataListeners()
         initAdapters()
 
-        genderSpinner.setSpinnerAdapter(adapterGenders)
+//        genderSpinner.setSpinnerAdapter(adapterGenders)
 
         updateProfileBtn.setOnClickListener {
             updateProfile()
@@ -200,17 +201,30 @@ class EditProfileFragment : BaseFragment() {
 
     private fun initAdapters() {
 
-        adapterGenders =
-            SingleValueAdapter(
-                mutableListOf(
-                    SingleValueEntity(getString(R.string.female)),
-                    SingleValueEntity(getString(R.string.male))
-                ), object : IBaseItemListener<SingleValueEntity> {
-                    override fun onClick(position: Int?, model: SingleValueEntity?, viewId: View?) {
-                        genderSpinner.setText(model?.title)
-                        genderSpinner.dismiss()
-                    }
-                })
+        viewModel.canChooseGender.observeForever { canChoose ->
+            if (canChoose) {
+                adapterGenders =
+                    SingleValueAdapter(
+                        mutableListOf(
+                            SingleValueEntity(getString(R.string.female)),
+                            SingleValueEntity(getString(R.string.male))
+                        ), object : IBaseItemListener<SingleValueEntity> {
+                            override fun onClick(
+                                position: Int?,
+                                model: SingleValueEntity?,
+                                viewId: View?
+                            ) {
+                                genderSpinner.setText(model?.title)
+                                genderSpinner.dismiss()
+
+                            }
+                        })
+                genderSpinner.setSpinnerAdapter(adapterGenders)
+
+            } else {
+                genderSpinner.setHint(getString(R.string.gender_cannot_set_twice))
+            }
+        }
 
     }
 
@@ -278,7 +292,7 @@ class EditProfileFragment : BaseFragment() {
                 gender = genderSpinner.getText(),
                 ethnicity = ethnicitySpinner.getText(),
                 religion = religionSpinner.getText(),
-                height = heightEdt.getText().toInt(),
+                height = heightEdt.getText().getAge(),
                 maritalStatus = maritalSpinner.getText(),
                 occupation = occupationEdt.getText(),
                 aboutMe = aboutMeEdt.getText(),
@@ -297,6 +311,10 @@ class EditProfileFragment : BaseFragment() {
         errorMsgTv.text = ""
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.checkGenderIsEditable()
+    }
     override fun showError(msg: String?) {
         super.showError(msg)
         errorMsgTv.text = msg

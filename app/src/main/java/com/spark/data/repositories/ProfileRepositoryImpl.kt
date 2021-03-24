@@ -7,6 +7,7 @@ import com.spark.data.utils.GsonUtils.toStringByGson
 import com.spark.domain.models.ProfileEntity
 import com.spark.domain.models.mapToData
 import com.spark.domain.repositories.ProfileRepository
+import com.spark.presentation.utils.components.base.SharedPrefUtils
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -15,11 +16,12 @@ import java.io.File
 import javax.inject.Inject
 
 class ProfileRepositoryImpl @Inject constructor(
-    private val restApi: RestApi
+    private val restApi: RestApi,
+    private val sharedUtils: SharedPrefUtils
 ) : ProfileRepository, BaseDataSource() {
 
     private lateinit var multipartBody: MultipartBody.Part
-
+    private val GENDER_STORED = "GENDER_STORED"
     override suspend fun getProfile(): Resource<ProfileEntity> {
         getResult { restApi.getProfile() }.onSuccess {
             return Resource.Success(it.mapToEntity())
@@ -31,6 +33,9 @@ class ProfileRepositoryImpl @Inject constructor(
 
     override suspend fun updateProfile(profile: ProfileEntity): Resource<ProfileEntity> {
         getResult { restApi.updateProfile(profile.mapToData()) }.onSuccess {
+
+            sharedUtils.putBoolean(GENDER_STORED, true)
+
             return Resource.Success(it.mapToEntity())
         }.onError {
             return Resource.Failure.NetworkException(it)
@@ -50,6 +55,10 @@ class ProfileRepositoryImpl @Inject constructor(
             return Resource.Failure.Generic(it)
         }
         return Resource.Failure.Generic("Error in Repo")
+    }
+
+    override fun genderIsSelected(): Boolean {
+        return sharedUtils.getBoolean(GENDER_STORED, false)
     }
 
 }

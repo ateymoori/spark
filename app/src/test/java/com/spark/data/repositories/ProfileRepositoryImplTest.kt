@@ -13,9 +13,9 @@ import com.spark.data.utils.GsonUtils.toObjectByGson
 import com.spark.data.utils.GsonUtils.toStringByGson
 import com.spark.domain.models.ProfileEntity
 import com.spark.domain.models.mapToData
-import com.spark.getOrAwaitValue
 import com.spark.presentation.utils.Constants
 import com.spark.presentation.utils.components.base.FileReader
+import com.spark.presentation.utils.components.base.SharedPrefUtils
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
@@ -37,6 +37,8 @@ class ProfileRepositoryImplTest {
 
     @Mock
     private lateinit var restApi: RestApi
+    @Mock
+    private lateinit var sharedUtils: SharedPrefUtils
 
     @Mock
     private lateinit var avatarFile: File
@@ -53,7 +55,7 @@ class ProfileRepositoryImplTest {
             val profile = FileReader("profile_api.json").content.toObjectByGson<ProfileData>()
             val response = Response.success(profile)
             Mockito.`when`(restApi.getProfile()).thenReturn(response)
-            val impl = ProfileRepositoryImpl(restApi)
+            val impl = ProfileRepositoryImpl(restApi,sharedUtils)
             assertEquals(
                 impl.getProfile(),
                 Resource.Success(profile.mapToEntity())
@@ -77,7 +79,7 @@ class ProfileRepositoryImplTest {
 
             Mockito.`when`(restApi.updateProfile(profile)).thenReturn(responseError)
 
-            val impl = ProfileRepositoryImpl(restApi)
+            val impl = ProfileRepositoryImpl(restApi,sharedUtils)
 
             impl.updateProfile(profile.mapToEntity())
                 .onSuccess {
@@ -97,7 +99,7 @@ class ProfileRepositoryImplTest {
             val responseSuccess = Response.success(fakeProfile.mapToData())
             Mockito.`when`(restApi.uploadAvatar(file)).thenReturn(responseSuccess)
 
-            val profileRepositoryImpl = ProfileRepositoryImpl(restApi)
+            val profileRepositoryImpl = ProfileRepositoryImpl(restApi,sharedUtils)
             Mockito.`when`(profileRepositoryImpl.uploadAvatar(avatarFile)).thenReturn(
                 Resource.Success(fakeProfile)
             )
